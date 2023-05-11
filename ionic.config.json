@@ -1,0 +1,7 @@
+{
+  "name": "ion-kitchen-keeper",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
