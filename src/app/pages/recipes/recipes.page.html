@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Recipes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <h2>Explore Recipes</h2>
+  </div>
+  <div *ngFor="let recipe of recipes">
+    <app-recipe [recipe]="recipe"></app-recipe>
+  </div>
+</ion-content>
