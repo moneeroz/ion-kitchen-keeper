@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthguardService } from './services/authguard.service';
 
 const routes: Routes = [
   {
@@ -14,23 +15,37 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () =>
+      import('./pages/register/register.module').then(
+        (m) => m.RegisterPageModule,
+      ),
   },
   {
     path: 'recipes',
-    loadChildren: () => import('./pages/recipes/recipes.module').then( m => m.RecipesPageModule)
+    loadChildren: () =>
+      import('./pages/recipes/recipes.module').then((m) => m.RecipesPageModule),
+    canActivate: [AuthguardService],
   },
   {
     path: 'categories',
-    loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
+    loadChildren: () =>
+      import('./pages/categories/categories.module').then(
+        (m) => m.CategoriesPageModule,
+      ),
+    canActivate: [AuthguardService],
   },
   {
     path: 'favourites',
-    loadChildren: () => import('./pages/favourites/favourites.module').then( m => m.FavouritesPageModule)
+    loadChildren: () =>
+      import('./pages/favourites/favourites.module').then(
+        (m) => m.FavouritesPageModule,
+      ),
+    canActivate: [AuthguardService],
   },
 ];
 
