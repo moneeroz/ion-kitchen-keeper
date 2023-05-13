@@ -10,7 +10,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class RecipePage implements OnInit {
   recipe_id: string | null = '';
-  recipe!: Irecipe;
+  recipe?: Irecipe;
 
   constructor(
     private recipeService: RecipeService,
