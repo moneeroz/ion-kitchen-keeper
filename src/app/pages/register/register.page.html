@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form class="flex-center">
+  <form class="flex-center" [formGroup]="registerForm" (ngSubmit)="register()">
     <ion-card>
       <ion-card-header>
         <ion-card-title color="secondary">Kitchen Keeper</ion-card-title>
@@ -15,6 +15,7 @@
         <ion-list>
           <ion-item>
             <ion-input
+              formControlName="username"
               label="Username"
               labelPlacement="floating"
               placeholder="Enter username"
@@ -23,6 +24,7 @@
           </ion-item>
           <ion-item>
             <ion-input
+              formControlName="email"
               label="Email"
               labelPlacement="floating"
               placeholder="Enter email"
@@ -31,6 +33,7 @@
           </ion-item>
           <ion-item>
             <ion-input
+              formControlName="password"
               label="Password"
               labelPlacement="floating"
               placeholder="Enter password"
@@ -39,7 +42,12 @@
           </ion-item>
         </ion-list>
 
-        <ion-button color="secondary" size="full" fill="clear"
+        <ion-button
+          type="submit"
+          color="secondary"
+          size="full"
+          fill="clear"
+          [disabled]="registerForm.invalid"
           >Register</ion-button
         >
       </ion-card-content>

@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true"
-  ><form class="flex-center">
+  ><form class="flex-center" [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-card>
       <ion-card-header>
         <ion-card-title color="secondary">Kitchen Keeper</ion-card-title>
@@ -9,14 +9,16 @@
         <ion-list>
           <ion-item>
             <ion-input
-              label="Username"
+              formControlName="email"
+              label="Email"
               labelPlacement="floating"
-              placeholder="Enter username"
-              type="text"
+              placeholder="Enter email"
+              type="email"
             ></ion-input>
           </ion-item>
           <ion-item>
             <ion-input
+              formControlName="password"
               label="Password"
               labelPlacement="floating"
               placeholder="Enter password"
@@ -27,7 +29,13 @@
         <ion-button color="dark" size="full" fill="clear"
           >Forgot password</ion-button
         >
-        <ion-button color="secondary" size="full">Login</ion-button>
+        <ion-button
+          type="submit"
+          color="secondary"
+          size="full"
+          [disabled]="loginForm.invalid"
+          >Login</ion-button
+        >
         <ion-button color="secondary" size="full" fill="clear"
           >Register</ion-button
         >
