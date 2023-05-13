@@ -7,6 +7,7 @@ import { Irecipe } from '../interfaces/irecipe';
 })
 export class RecipeService {
   apiURL: string = 'http://localhost:2828/api/recipes';
+
   constructor(private http: HttpClient) {}
 
   getRecipes() {
