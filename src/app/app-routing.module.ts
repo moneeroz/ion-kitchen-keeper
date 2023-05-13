@@ -47,6 +47,12 @@ const routes: Routes = [
       ),
     canActivate: [AuthguardService],
   },
+  {
+    path: 'recipe/:recipe_id',
+    loadChildren: () =>
+      import('./pages/recipe/recipe.module').then((m) => m.RecipePageModule),
+    canActivate: [AuthguardService],
+  },
 ];
 
 @NgModule({
