@@ -5,9 +5,32 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">categories</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div>
+    <ion-button (click)="getRecipesByCategory('chicken')" shape="round"
+      >chicken</ion-button
+    >
+    <ion-button (click)="getRecipesByCategory('beef')" shape="round"
+      >beef</ion-button
+    >
+  </div>
+  <div>
+    <ion-button (click)="getRecipesByCategory('seafood')" shape="round"
+      >seafood</ion-button
+    >
+    <ion-button (click)="getRecipesByCategory('vegetarian')" shape="round"
+      >vegetarian</ion-button
+    >
+  </div>
+  <ion-card *ngFor="let recipe of recipes">
+    <img src="{{ recipe.image }}" />
+    <ion-card-header>
+      <ion-card-title>{{ recipe.name }}</ion-card-title>
+      <ion-card-subtitle> Prep Time</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ recipe.ingredients }}</p>
+      <p>{{ recipe.directions }}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

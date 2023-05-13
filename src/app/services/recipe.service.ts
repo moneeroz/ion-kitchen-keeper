@@ -13,6 +13,10 @@ export class RecipeService {
     return this.http.get<Irecipe[]>(this.apiURL);
   }
 
+  getRecipesByCategory(category: string) {
+    return this.http.get<Irecipe[]>(this.apiURL + '/categories/' + category);
+  }
+
   getRecipe(recipe_id: string) {
     return this.http.get<Irecipe>(this.apiURL + '/' + recipe_id);
   }

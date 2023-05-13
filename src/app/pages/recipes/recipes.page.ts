@@ -14,8 +14,13 @@ export class RecipesPage implements OnInit {
 
   ngOnInit() {}
   ionViewWillEnter() {
-    this.recipeService
-      .getRecipes()
-      .subscribe((recipes) => (this.recipes = recipes));
+    this.recipeService.getRecipes().subscribe({
+      next: (recipes) => {
+        this.recipes = recipes;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

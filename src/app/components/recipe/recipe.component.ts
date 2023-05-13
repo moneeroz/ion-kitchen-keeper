@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
 import { Irecipe } from 'src/app/interfaces/irecipe';
 
 @Component({
