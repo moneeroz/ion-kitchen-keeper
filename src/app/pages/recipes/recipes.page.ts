@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchbarCustomEvent } from '@ionic/angular';
 import { Irecipe } from 'src/app/interfaces/irecipe';
 import { FavouriteService } from 'src/app/services/favourite.service';
 import { RecipeService } from 'src/app/services/recipe.service';
@@ -12,7 +19,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RecipesPage implements OnInit {
   recipes: Irecipe[] = [];
+  filteredRecipes: Irecipe[] = [];
   user: any;
+
+  @Input() inputQuery: any;
 
   constructor(
     private recipeService: RecipeService,
@@ -29,6 +39,7 @@ export class RecipesPage implements OnInit {
     this.recipeService.getRecipes().subscribe({
       next: (recipes) => {
         this.recipes = recipes;
+        this.filteredRecipes = this.recipes;
       },
       error: (err) => {
         console.log(err);
@@ -53,5 +64,16 @@ export class RecipesPage implements OnInit {
         alert('Recipe is already in Favourites');
       },
     });
+  }
+
+  filterRecipes() {
+    if (this.inputQuery) {
+      return (this.filteredRecipes = this.recipes.filter((recipe) => {
+        return recipe.name
+          .toLowerCase()
+          .includes(this.inputQuery.toLowerCase());
+      }));
+    }
+    return (this.filteredRecipes = this.recipes);
   }
 }

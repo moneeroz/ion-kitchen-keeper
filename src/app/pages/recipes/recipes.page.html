@@ -8,10 +8,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
-    <h2>Explore Recipes</h2>
-  </div>
-  <div *ngFor="let recipe of recipes">
+  <ion-searchbar
+    [(ngModel)]="inputQuery"
+    (ionInput)="filterRecipes()"
+    show-clear-button="focus"
+    placeholder="find a recipe"
+    animated="true"
+  ></ion-searchbar>
+  <div *ngFor="let recipe of filteredRecipes">
     <ion-fab horizontal="end">
       <ion-fab-button
         (click)="onFavourite(recipe.id)"
