@@ -18,7 +18,7 @@ export class RecipeService {
     return this.http.get<Irecipe[]>(this.apiURL + '/categories/' + category);
   }
 
-  getRecipe(recipe_id: string) {
+  getRecipe(recipe_id: string | null) {
     return this.http.get<Irecipe>(this.apiURL + '/' + recipe_id);
   }
   createRecipe(recipe_data: any) {

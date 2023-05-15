@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Irecipe } from 'src/app/interfaces/irecipe';
 
 @Component({
@@ -8,7 +8,14 @@ import { Irecipe } from 'src/app/interfaces/irecipe';
 })
 export class RecipeComponent implements OnInit {
   @Input() recipe!: Irecipe;
+
+  @Output() viewEvent = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {}
+
+  onView(recipe_id: string) {
+    this.viewEvent.emit(recipe_id);
+  }
 }
