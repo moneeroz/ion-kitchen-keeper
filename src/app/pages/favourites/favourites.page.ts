@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Ifavourite } from 'src/app/interfaces/ifavourite';
 import { FavouriteService } from 'src/app/services/favourite.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,7 +15,10 @@ export class FavouritesPage implements OnInit {
   constructor(
     private userService: UserService,
     private favouriteService: FavouriteService,
+    private router: Router,
   ) {}
+
+  ngOnInit() {}
 
   ionViewWillEnter() {
     this.user = this.userService.getUserData();
@@ -29,5 +33,31 @@ export class FavouritesPage implements OnInit {
       },
     });
   }
-  ngOnInit() {}
+
+  onView(recipe_id: string) {
+    console.log(recipe_id);
+    this.router.navigate(['recipe', recipe_id]);
+  }
+
+  onDelete(recipe_id: string) {
+    const index = this.userFavourites.findIndex((favourite) => {
+      return favourite.recipe.id === recipe_id;
+    });
+
+    // Delete Recipe from the DB
+    this.favouriteService
+      .deleteFromFavourites(this.user.id, recipe_id)
+      .subscribe({
+        next: (result) => {
+          console.log(result);
+          alert('removed from favourites successfully');
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+
+    // Remove Recipe from UI
+    this.userFavourites.splice(index, 1);
+  }
 }
