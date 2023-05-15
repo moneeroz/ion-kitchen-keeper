@@ -22,6 +22,7 @@ export class RecipesPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+
   ionViewWillEnter() {
     this.user = this.userService.getUserData();
 
@@ -45,9 +46,11 @@ export class RecipesPage implements OnInit {
     this.favouriteService.addToFavourites(this.user.id, recipe_id).subscribe({
       next: (result) => {
         console.log(result);
+        alert('Recipe added to Favourites');
       },
       error: (err) => {
         console.log(err);
+        alert('Recipe is already in Favourites');
       },
     });
   }
