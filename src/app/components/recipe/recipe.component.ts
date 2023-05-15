@@ -9,13 +9,13 @@ import { Irecipe } from 'src/app/interfaces/irecipe';
 export class RecipeComponent implements OnInit {
   @Input() recipe!: Irecipe;
 
-  @Output() favouriteEvent = new EventEmitter();
+  @Output() viewEvent = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {}
 
-  onFavourite(recipe_id: string) {
-    this.favouriteEvent.emit(recipe_id);
+  onView(recipe_id: string) {
+    this.viewEvent.emit(recipe_id);
   }
 }
