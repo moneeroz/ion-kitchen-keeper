@@ -9,6 +9,16 @@
 
 <ion-content [fullscreen]="true">
   <div *ngFor="let favourite of userFavourites">
+    <ion-fab horizontal="end">
+      <ion-fab-button
+        (click)="onDelete(favourite.recipe.id)"
+        size="small"
+        color="secondary"
+      >
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
     <app-recipe
       [recipe]="favourite.recipe"
       (viewEvent)="onView($event)"

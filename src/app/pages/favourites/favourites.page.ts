@@ -38,4 +38,26 @@ export class FavouritesPage implements OnInit {
     console.log(recipe_id);
     this.router.navigate(['recipe', recipe_id]);
   }
+
+  onDelete(recipe_id: string) {
+    const index = this.userFavourites.findIndex((favourite) => {
+      return favourite.recipe.id === recipe_id;
+    });
+
+    // Delete Recipe from the DB
+    this.favouriteService
+      .deleteFromFavourites(this.user.id, recipe_id)
+      .subscribe({
+        next: (result) => {
+          console.log(result);
+          alert('removed from favourites successfully');
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+
+    // Remove Recipe from UI
+    this.userFavourites.splice(index, 1);
+  }
 }
