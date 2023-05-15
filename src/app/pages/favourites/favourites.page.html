@@ -5,14 +5,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let favourite of userFavourites">
-    <img src="{{ favourite.recipe.image }}" />
-    <ion-card-header>
-      <ion-card-title>{{ favourite.recipe.name }}</ion-card-title>
-      <ion-card-subtitle>
-        <div>{{ favourite.recipe.category_id }}</div>
-        <div>Prep Time</div></ion-card-subtitle
-      >
-    </ion-card-header>
-  </ion-card>
+  <div *ngFor="let favourite of userFavourites">
+    <app-recipe
+      [recipe]="favourite.recipe"
+      (viewEvent)="onView($event)"
+    ></app-recipe>
+  </div>
 </ion-content>

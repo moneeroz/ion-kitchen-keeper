@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Ifavourite } from 'src/app/interfaces/ifavourite';
 import { FavouriteService } from 'src/app/services/favourite.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,7 +15,10 @@ export class FavouritesPage implements OnInit {
   constructor(
     private userService: UserService,
     private favouriteService: FavouriteService,
+    private router: Router,
   ) {}
+
+  ngOnInit() {}
 
   ionViewWillEnter() {
     this.user = this.userService.getUserData();
@@ -29,5 +33,9 @@ export class FavouritesPage implements OnInit {
       },
     });
   }
-  ngOnInit() {}
+
+  onView(recipe_id: string) {
+    console.log(recipe_id);
+    this.router.navigate(['recipe', recipe_id]);
+  }
 }
