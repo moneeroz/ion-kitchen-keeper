@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { SearchbarCustomEvent } from '@ionic/angular';
 import { Irecipe } from 'src/app/interfaces/irecipe';
+import { Iuser } from 'src/app/interfaces/iuser';
 import { FavouriteService } from 'src/app/services/favourite.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { UserService } from 'src/app/services/user.service';
@@ -20,9 +21,9 @@ import { UserService } from 'src/app/services/user.service';
 export class RecipesPage implements OnInit {
   recipes: Irecipe[] = [];
   filteredRecipes: Irecipe[] = [];
-  user: any;
+  user!: Iuser;
 
-  @Input() inputQuery: any;
+  @Input() inputQuery: string = '';
 
   constructor(
     private recipeService: RecipeService,
@@ -69,9 +70,15 @@ export class RecipesPage implements OnInit {
   filterRecipes() {
     if (this.inputQuery) {
       return (this.filteredRecipes = this.recipes.filter((recipe) => {
-        return recipe.name
+        const searchQuery = this.inputQuery.toLowerCase();
+
+        const recipeNameMatch = recipe.name.toLowerCase().includes(searchQuery);
+
+        const ingredientNameMatch = recipe.ingredients
           .toLowerCase()
-          .includes(this.inputQuery.toLowerCase());
+          .includes(searchQuery);
+
+        return recipeNameMatch || ingredientNameMatch;
       }));
     }
     return (this.filteredRecipes = this.recipes);
