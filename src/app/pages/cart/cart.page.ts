@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IcartItem } from 'src/app/interfaces/icart';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +9,11 @@ import { IcartItem } from 'src/app/interfaces/icart';
 })
 export class CartPage implements OnInit {
   cart: IcartItem[] = [];
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
+  ionViewWillEnter() {
+    this.cart = this.cartService.CartItems;
+    console.log(this.cart);
+  }
   ngOnInit() {}
 }
