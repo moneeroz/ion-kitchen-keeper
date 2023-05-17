@@ -53,6 +53,10 @@ const routes: Routes = [
       import('./pages/recipe/recipe.module').then((m) => m.RecipePageModule),
     canActivate: [AuthguardService],
   },
+  {
+    path: 'cart',
+    loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
+  },
 ];
 
 @NgModule({

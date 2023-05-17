@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Irecipe } from 'src/app/interfaces/irecipe';
+import { CartService } from 'src/app/services/cart.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class RecipePage implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
+    private cartService: CartService,
   ) {}
 
   ionViewWillEnter() {
@@ -32,4 +34,15 @@ export class RecipePage implements OnInit {
   }
 
   ngOnInit() {}
+
+  addToCart(recipe: Irecipe) {
+    this.cartService.addToCart({
+      id: recipe.id,
+      name: recipe.name,
+      image: recipe.image,
+      ingredients: recipe.ingredients,
+      category_id: recipe.category_id,
+      quantity: 1,
+    });
+  }
 }

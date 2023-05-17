@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Grocery Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="!cart.length">
+    <ion-item>
+      <ion-label>Cart is Empty!</ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card *ngIf="cart.length">
+    <ion-card-header>
+      <ion-card-subtitle> Cart items: {{cart.length}} </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngFor="let item of cart">
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img src="{{item.image}}" />
+          </ion-thumbnail>
+          <ion-label>{{item.name}}</ion-label>
+          <ion-label>{{item.quantity}}</ion-label>
+          <ion-button (click)="onRemoveFromCart(item)" color="secondary">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

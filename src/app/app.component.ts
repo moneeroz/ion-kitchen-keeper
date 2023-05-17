@@ -13,6 +13,7 @@ export class AppComponent {
     { title: 'Recipes', url: 'recipes', icon: 'mail' },
     { title: 'Categories', url: 'categories', icon: 'mail' },
     { title: 'Favourites', url: 'favourites', icon: 'mail' },
+    { title: 'Cart', url: 'cart', icon: 'mail' },
   ];
   constructor(private router: Router, private menu: MenuController) {}
 
