@@ -7,7 +7,22 @@ import { IcartItem } from '../interfaces/icart';
 })
 export class CartService {
   private _cart: IcartItem[] = [];
-  constructor() {}
+  constructor() {
+    this.loadCartItems();
+  }
+
+  get cartItems() {
+    return this._cart;
+  }
+
+  private saveCartItems() {
+    localStorage.setItem('cartItems', JSON.stringify(this._cart));
+  }
+
+  private loadCartItems() {
+    const storedItems = localStorage.getItem('cartItems');
+    if (storedItems) this._cart = JSON.parse(storedItems);
+  }
 
   addToCart(item: IcartItem): void {
     const items = this._cart;
@@ -16,11 +31,24 @@ export class CartService {
 
     !itemAlreadyInCart ? items.push(item) : (itemAlreadyInCart.quantity += 1);
 
+    this.saveCartItems();
     this._cart = items;
     alert('added to cart');
   }
 
-  get CartItems() {
-    return this._cart;
+  removeFromCart(item: IcartItem): void {
+    const index = this.cartItems.findIndex((_item) => _item.id === item.id);
+
+    if (index !== -1) {
+      this.cartItems.splice(index, 1);
+      this.saveCartItems();
+      this._cart = this.cartItems;
+    }
+  }
+
+  clearCart(): void {
+    this.cartItems.length = 0;
+    this.saveCartItems();
+    this._cart = this.cartItems;
   }
 }
