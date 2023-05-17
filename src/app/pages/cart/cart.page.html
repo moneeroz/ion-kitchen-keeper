@@ -15,7 +15,11 @@
           <ion-thumbnail slot="start">
             <img src="{{item.image}}" />
           </ion-thumbnail>
+          <ion-label>{{item.name}}</ion-label>
           <ion-label>{{item.quantity}}</ion-label>
+          <ion-button (click)="onRemoveFromCart(item)" color="secondary">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
         </ion-item>
       </ion-list>
     </ion-card-content>
