@@ -19,15 +19,20 @@
       <ion-list *ngFor="let item of cart">
         <ion-item>
           <ion-thumbnail slot="start">
-            <img src="{{item.image}}" />
+            <img src="{{item.recipe.image}}" />
           </ion-thumbnail>
-          <ion-label>{{item.name}}</ion-label>
+          <ion-label>{{item.recipe.name}}</ion-label>
           <ion-label>{{item.quantity}}</ion-label>
-          <ion-button (click)="onRemoveFromCart(item)" color="secondary">
+          <ion-button
+            (click)="onDelete(item.recipeId)"
+            color="secondary"
+            class="round-button"
+          >
             <ion-icon name="close-outline"></ion-icon>
           </ion-button>
         </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
+  <ion-button (click)="onEmptyCart()" color="secondary">Empty Cart</ion-button>
 </ion-content>
