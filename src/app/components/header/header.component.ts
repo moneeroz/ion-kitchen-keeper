@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 })
 export class HeaderComponent implements OnInit {
   @Input() title: string = '';
+
   constructor() {}
 
   ngOnInit() {}
