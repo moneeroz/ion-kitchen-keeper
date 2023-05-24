@@ -8,6 +8,7 @@ import { RecipesPageRoutingModule } from './recipes-routing.module';
 
 import { RecipesPage } from './recipes.page';
 import { RecipeComponentModule } from 'src/app/components/recipe/recipe.module';
+import { HeaderModule } from 'src/app/components/header/header.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { RecipeComponentModule } from 'src/app/components/recipe/recipe.module';
     IonicModule,
     RecipesPageRoutingModule,
     RecipeComponentModule,
+    HeaderModule,
   ],
   declarations: [RecipesPage],
 })

@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./favourites.page.scss'],
 })
 export class FavouritesPage implements OnInit {
+  pageTitle: string = 'favourites';
   user!: Iuser;
   userFavourites: Ifavourite[] = [];
   constructor(

@@ -1,12 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="addToCart()" color="secondary"
+        >add to cart</ion-button
+      >
+    </ion-buttons>
     <ion-title>recipe</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <img src="{{recipe?.image}}" />
-  <ion-button (click)="addToCart(recipe!)">add to cart</ion-button>
   <ion-header>{{recipe?.name}}</ion-header>
   <p>{{recipe?.ingredients}}</p>
   <p>{{recipe?.directions}}</p>

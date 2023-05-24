@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/cart" color="secondary" class="cart-button">
+        <ion-icon name="cart-outline" size="large" class="cart-icon"></ion-icon>
+        <ion-badge color="warning" class="cart-badge">02</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

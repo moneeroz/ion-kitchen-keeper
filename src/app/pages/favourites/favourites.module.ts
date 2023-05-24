@@ -8,6 +8,7 @@ import { FavouritesPageRoutingModule } from './favourites-routing.module';
 
 import { FavouritesPage } from './favourites.page';
 import { RecipeComponentModule } from 'src/app/components/recipe/recipe.module';
+import { HeaderModule } from 'src/app/components/header/header.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { RecipeComponentModule } from 'src/app/components/recipe/recipe.module';
     IonicModule,
     FavouritesPageRoutingModule,
     RecipeComponentModule,
+    HeaderModule,
   ],
   declarations: [FavouritesPage],
 })

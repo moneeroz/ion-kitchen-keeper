@@ -19,6 +19,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./recipes.page.scss'],
 })
 export class RecipesPage implements OnInit {
+  pageTitle: string = 'recipes';
   recipes: Irecipe[] = [];
   filteredRecipes: Irecipe[] = [];
   user!: Iuser;
