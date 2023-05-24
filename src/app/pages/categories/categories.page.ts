@@ -8,6 +8,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
   styleUrls: ['./categories.page.scss'],
 })
 export class CategoriesPage implements OnInit {
+  pageTitle: string = 'catagories';
   recipes: Irecipe[] = [];
   constructor(private recipeService: RecipeService) {}
 
