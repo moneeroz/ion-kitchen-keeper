@@ -11,28 +11,36 @@
     </ion-item>
   </ion-card>
 
-  <ion-card *ngIf="cart.length">
+  <div *ngIf="cart.length">
     <ion-card-header>
       <ion-card-subtitle> Cart items: {{cart.length}} </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-list *ngFor="let item of cart">
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img src="{{item.recipe.image}}" />
-          </ion-thumbnail>
-          <ion-label>{{item.recipe.name}}</ion-label>
-          <ion-label>{{item.quantity}}</ion-label>
-          <ion-button
-            (click)="onDelete(item.recipeId)"
-            color="secondary"
-            class="round-button"
-          >
-            <ion-icon name="close-outline"></ion-icon>
-          </ion-button>
-        </ion-item>
-      </ion-list>
+      <ion-card *ngFor="let item of cart">
+        <ion-card-header>
+          <ion-chip>
+            <ion-avatar>
+              <img alt="" src="{{item.recipe.image}}" />
+            </ion-avatar>
+            <ion-label>{{item.recipe.name}}</ion-label>
+          </ion-chip>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p *ngFor="let ingrediant of item.recipe?.ingredients?.split('\n')">
+            {{ingrediant}}
+          </p>
+        </ion-card-content>
+
+        <ion-button
+          (click)="onDelete(item.recipeId)"
+          color="secondary"
+          fill="clear"
+        >
+          remove from cart
+        </ion-button>
+      </ion-card>
     </ion-card-content>
-  </ion-card>
+  </div>
   <ion-button (click)="onEmptyCart()" color="secondary">Empty Cart</ion-button>
 </ion-content>
