@@ -12,6 +12,13 @@
 <ion-content [fullscreen]="true">
   <img src="{{recipe?.image}}" />
   <ion-header>{{recipe?.name}}</ion-header>
-  <p>{{recipe?.ingredients}}</p>
-  <p>{{recipe?.directions}}</p>
+  <!-- <p>{{recipe?.ingredients}}</p> -->
+  <h4>Ingredients :</h4>
+  <!-- split ingredients string by new line charecter -->
+  <p *ngFor="let item of recipe?.ingredients?.split('\n')">{{item}}</p>
+
+  <h4>Directions :</h4>
+  <!-- split directions string by period charecter -->
+  <p *ngFor="let item of recipe?.directions?.split('.')">{{item}}</p>
+  <!-- <p>{{recipe?.directions}}</p> -->
 </ion-content>
