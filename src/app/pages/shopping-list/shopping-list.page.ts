@@ -14,6 +14,8 @@ export class ShoppingListPage implements OnInit {
 
   clickedIngredients: boolean[] = [];
 
+  completedShopping: boolean = false;
+
   constructor(
     private cartService: CartService,
     private userService: UserService,
@@ -26,7 +28,11 @@ export class ShoppingListPage implements OnInit {
       next: (cartItems) => {
         items = cartItems.map((item) => item.recipe.ingredients.split('\n'));
         for (const arr of items) {
-          arr.forEach((item) => this.ingredients.push(item));
+          arr.forEach((item) => {
+            this.ingredients.push(item);
+
+            this.clickedIngredients.push(false);
+          });
         }
         console.log(this.ingredients);
       },
@@ -40,5 +46,9 @@ export class ShoppingListPage implements OnInit {
 
   onClick(index: number) {
     this.clickedIngredients[index] = !this.clickedIngredients[index];
+
+    this.completedShopping = this.clickedIngredients.every(
+      (clicked) => clicked,
+    );
   }
 }
