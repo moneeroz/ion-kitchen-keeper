@@ -19,6 +19,6 @@
 
   <h4>Directions :</h4>
   <!-- split directions string by period charecter -->
-  <p *ngFor="let item of recipe?.directions?.split('.')">{{item}}</p>
+  <p *ngFor="let item of recipe?.directions?.split('\n')">{{item}}</p>
   <!-- <p>{{recipe?.directions}}</p> -->
 </ion-content>
