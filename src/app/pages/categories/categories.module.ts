@@ -9,6 +9,7 @@ import { CategoriesPageRoutingModule } from './categories-routing.module';
 import { CategoriesPage } from './categories.page';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { HeaderModule } from 'src/app/components/header/header.module';
+import { RecipeComponentModule } from 'src/app/components/recipe/recipe.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HeaderModule } from 'src/app/components/header/header.module';
     IonicModule,
     CategoriesPageRoutingModule,
     HeaderModule,
+    RecipeComponentModule,
   ],
   declarations: [CategoriesPage],
 })

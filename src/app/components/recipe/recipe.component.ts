@@ -9,6 +9,8 @@ import { Irecipe } from 'src/app/interfaces/irecipe';
 export class RecipeComponent implements OnInit {
   @Input() recipe!: Irecipe;
 
+  @Input() showCatagory: boolean = true;
+
   @Output() viewEvent = new EventEmitter();
 
   constructor() {}

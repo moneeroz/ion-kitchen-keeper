@@ -8,16 +8,21 @@
     placeholder="find a recipe"
     animated="true"
   ></ion-searchbar>
-  <div *ngFor="let recipe of filteredRecipes">
-    <ion-fab horizontal="end">
-      <ion-fab-button
-        (click)="onFavourite(recipe.id)"
-        size="small"
-        color="secondary"
-      >
-        <ion-icon name="heart-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-    <app-recipe [recipe]="recipe" (viewEvent)="onView($event)"></app-recipe>
-  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="4" *ngFor="let recipe of filteredRecipes">
+        <ion-fab horizontal="end">
+          <ion-fab-button
+            (click)="onFavourite(recipe.id)"
+            size="small"
+            color="secondary"
+          >
+            <ion-icon name="heart-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <app-recipe [recipe]="recipe" (viewEvent)="onView($event)"></app-recipe>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
