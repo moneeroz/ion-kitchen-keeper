@@ -42,5 +42,20 @@
       </ion-card>
     </ion-card-content>
   </div>
-  <ion-button (click)="onEmptyCart()" color="secondary">Empty Cart</ion-button>
+  <ion-button
+    routerLink="/shopping-list"
+    color="secondary"
+    fill="clear"
+    expand="full"
+  >
+    Create Shopping List
+  </ion-button>
+  <ion-button
+    (click)="onEmptyCart()"
+    color="secondary"
+    fill="clear"
+    expand="full"
+  >
+    Empty Cart
+  </ion-button>
 </ion-content>
