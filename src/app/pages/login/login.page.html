@@ -26,7 +26,12 @@
             ></ion-input>
           </ion-item>
         </ion-list>
-        <ion-button color="dark" size="full" fill="clear"
+        <ion-button
+          (click)="forgotPassword()"
+          [disabled]="!loginForm.get('email')?.valid"
+          color="dark"
+          size="full"
+          fill="clear"
           >Forgot password</ion-button
         >
         <ion-button

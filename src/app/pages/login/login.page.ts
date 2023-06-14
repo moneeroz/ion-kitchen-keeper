@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/services/user.service';
+import { IappState } from 'src/store/iapp-state';
+import { hide, show } from 'src/store/loading/loading.actions';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +21,7 @@ export class LoginPage implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
+    private store: Store<IappState>,
   ) {}
 
   ngOnInit() {}
@@ -41,5 +45,13 @@ export class LoginPage implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  forgotPassword() {
+    this.store.dispatch(show());
+
+    setTimeout(() => {
+      this.store.dispatch(hide());
+    }, 2000);
   }
 }
