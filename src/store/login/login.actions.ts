@@ -6,5 +6,5 @@ export const recoverPasswordSuccessful = createAction(
 );
 export const recoverPasswordFail = createAction(
   '[Recover password ] fail',
-  props<{ error: string }>(),
+  props<{ error: any }>(),
 );

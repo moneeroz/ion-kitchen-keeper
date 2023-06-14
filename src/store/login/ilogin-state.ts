@@ -3,5 +3,5 @@ export interface IloginState {
   isRecoveredPassword: boolean;
   isLoggingIn: boolean;
   isLoggedIn: boolean;
-  error: string | null;
+  error: any;
 }
