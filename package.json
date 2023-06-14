@@ -27,6 +27,8 @@
     "@capacitor/keyboard": "5.0.2",
     "@capacitor/status-bar": "5.0.2",
     "@ionic/angular": "^7.0.0",
+    "@ngrx/store": "^16.0.1",
+    "@ngrx/store-devtools": "^16.0.1",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -62,7 +64,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "ts-node": "^8.3.0",
-    "typescript": "~5.0.2"
+    "typescript": "~5.0.2",
+    "@ngrx/eslint-plugin": "^16.0.1"
   },
   "description": "An Ionic project"
 }
