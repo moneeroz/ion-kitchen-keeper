@@ -41,7 +41,11 @@
           [disabled]="loginForm.invalid"
           >Login</ion-button
         >
-        <ion-button color="secondary" size="full" fill="clear"
+        <ion-button
+          (click)="register()"
+          color="secondary"
+          size="full"
+          fill="clear"
           >Register</ion-button
         >
       </ion-card-content>
