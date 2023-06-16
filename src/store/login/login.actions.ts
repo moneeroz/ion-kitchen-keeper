@@ -1,7 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { Iuser } from 'src/app/interfaces/iuser';
 
-export const recoverPassword = createAction('[Recover password]');
+export const recoverPassword = createAction(
+  '[Recover password]',
+  props<{ email: string }>(),
+);
 export const recoverPasswordSuccess = createAction(
   '[Recover password] success',
 );
@@ -10,7 +13,10 @@ export const recoverPasswordFail = createAction(
   props<{ error: any }>(),
 );
 
-export const login = createAction('[Login]');
+export const login = createAction(
+  '[Login]',
+  props<{ email: string; password: string }>(),
+);
 export const loginSuccess = createAction(
   '[Login] success',
   props<{ user: Iuser }>(),

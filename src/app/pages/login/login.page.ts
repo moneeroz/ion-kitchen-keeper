@@ -10,9 +10,12 @@ import { IappState } from 'src/store/iapp-state';
 import { hide, show } from 'src/store/loading/loading.actions';
 import { IloginState } from 'src/store/login/ilogin-state';
 import {
+  login,
+  loginFail,
+  loginSuccess,
   recoverPassword,
   recoverPasswordFail,
-  recoverPasswordSuccessful,
+  recoverPasswordSuccess,
 } from 'src/store/login/login.actions';
 
 @Component({
@@ -41,9 +44,14 @@ export class LoginPage implements OnInit, OnDestroy {
     this.loginStateSubscription = this.store
       .select('login')
       .subscribe((loginState) => {
-        this.onIsRecoveringPassword(loginState);
+        // this.onIsRecoveringPassword(loginState);
         this.onIsRecoveredPassword(loginState);
-        this.onIsRecoverPasswordFail(loginState);
+
+        // this.onIsLoggingIn(loginState);
+        this.onIsLoggedIn(loginState);
+
+        this.onError(loginState);
+        this.toggleLoading(loginState);
       });
   }
 
@@ -53,30 +61,56 @@ export class LoginPage implements OnInit, OnDestroy {
     }
   }
 
-  private async onIsRecoveringPassword(loginState: IloginState) {
-    if (loginState.isRecoveringPassword) {
+  private toggleLoading(loginState: IloginState) {
+    if (loginState.isLoggingIn || loginState.isRecoveringPassword) {
       this.store.dispatch(show());
-
-      // this.auth
-      //   .recoverLoginDetails(this.loginForm.get('email')!.value)
-      //   .subscribe(() => {
-      //     this.store.dispatch(recoverPasswordSuccessful());
-      //   });
-      this.auth
-        .recoverLoginDetails(this.loginForm.get('email')!.value)
-        .subscribe({
-          next: () => {
-            this.store.dispatch(recoverPasswordSuccessful());
-          },
-          error: (error) => this.store.dispatch(recoverPasswordFail({ error })),
-        });
+    } else {
+      this.store.dispatch(hide());
     }
   }
 
+  private onIsLoggedIn(loginState: IloginState) {
+    if (loginState.isLoggedIn) {
+      this.router.navigateByUrl('recipes');
+    }
+  }
+
+  // private onIsLoggingIn(loginState: IloginState) {
+  //   if (loginState.isLoggingIn) {
+  //     const email = this.loginForm.get('email')?.value;
+  //     const password = this.loginForm.get('password')?.value;
+
+  //     this.auth.login(email, password).subscribe({
+  //       next: (user) => {
+  //         this.store.dispatch(loginSuccess({ user }));
+  //       },
+  //       error: (err) =>
+  //         this.store.dispatch(
+  //           loginFail({
+  //             error: {
+  //               message: 'User not found!',
+  //             },
+  //           }),
+  //         ),
+  //     });
+  //   }
+  // }
+
+  // private async onIsRecoveringPassword(loginState: IloginState) {
+  //   if (loginState.isRecoveringPassword) {
+  //     this.auth
+  //       .recoverLoginDetails(this.loginForm.get('email')!.value)
+  //       .subscribe({
+  //         next: () => {
+  //           this.store.dispatch(recoverPasswordSuccess());
+  //         },
+  //         error: (error) => this.store.dispatch(recoverPasswordFail({ error })),
+  //       });
+  //   }
+  // }
+
   private async onIsRecoveredPassword(loginState: IloginState) {
     if (loginState.isRecoveredPassword) {
-      this.store.dispatch(hide());
-
       const toast = await this.toastController.create({
         message: 'Recovery email sent!',
         duration: 2000,
@@ -87,12 +121,10 @@ export class LoginPage implements OnInit, OnDestroy {
     }
   }
 
-  private async onIsRecoverPasswordFail(loginState: IloginState) {
+  private async onError(loginState: IloginState) {
     if (loginState.error) {
-      this.store.dispatch(hide());
-
       const toast = await this.toastController.create({
-        message: loginState.error.message,
+        message: loginState.error.error,
         duration: 2000,
         position: 'bottom',
         color: 'danger',
@@ -102,33 +134,43 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   login() {
-    const formData = this.loginForm.value;
+    this.store.dispatch(
+      login({
+        email: this.loginForm.get('email')!.value,
+        password: this.loginForm.get('password')!.value,
+      }),
+    );
+    this.loginForm.reset();
 
-    this.userService.loginUser(formData).subscribe({
-      next: (result) => {
-        localStorage.setItem('currentUser', JSON.stringify(result));
+    // const formData = this.loginForm.value;
 
-        alert('Logged in successfully!');
+    // console.log(formData);
 
-        this.loginForm.reset();
+    // this.userService.loginUser(formData).subscribe({
+    //   next: (result) => {
+    //     localStorage.setItem('currentUser', JSON.stringify(result));
 
-        this.router.navigateByUrl('recipes');
-      },
-      error: (err) => {
-        alert(err.error);
+    //     alert('Logged in successfully!');
 
-        console.log(err);
-      },
-    });
+    //     this.loginForm.reset();
+
+    //     this.router.navigateByUrl('recipes');
+    //   },
+    //   error: (err) => {
+    //     alert(err.error);
+
+    //     console.log(err);
+    //   },
+    // });
+  }
+
+  register() {
+    this.router.navigateByUrl('register');
   }
 
   forgotPassword() {
-    // this.store.dispatch(show());
-
-    this.store.dispatch(recoverPassword());
-
-    // setTimeout(() => {
-    //   this.store.dispatch(hide());
-    // }, 2000);
+    this.store.dispatch(
+      recoverPassword({ email: this.loginForm.get('email')!.value }),
+    );
   }
 }

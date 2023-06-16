@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { appStoreModule } from 'src/store/appStoreModule';
 import { LoadingModule } from './components/loading/loading.module';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { LoadingModule } from './components/loading/loading.module';
     ...appStoreModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     LoadingModule,
+    // EffectsModule.forRoot([]),
   ],
 })
 export class AppModule {}
