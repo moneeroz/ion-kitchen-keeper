@@ -29,7 +29,6 @@ const routes: Routes = [
     path: 'recipes',
     loadChildren: () =>
       import('./pages/recipes/recipes.module').then((m) => m.RecipesPageModule),
-    canActivate: [AuthguardService],
   },
   {
     path: 'categories',
@@ -37,7 +36,6 @@ const routes: Routes = [
       import('./pages/categories/categories.module').then(
         (m) => m.CategoriesPageModule,
       ),
-    canActivate: [AuthguardService],
   },
   {
     path: 'favourites',
@@ -51,7 +49,6 @@ const routes: Routes = [
     path: 'recipe/:recipe_id',
     loadChildren: () =>
       import('./pages/recipe/recipe.module').then((m) => m.RecipePageModule),
-    canActivate: [AuthguardService],
   },
   {
     path: 'cart',
@@ -61,7 +58,11 @@ const routes: Routes = [
   },
   {
     path: 'shopping-list',
-    loadChildren: () => import('./pages/shopping-list/shopping-list.module').then( m => m.ShoppingListPageModule)
+    loadChildren: () =>
+      import('./pages/shopping-list/shopping-list.module').then(
+        (m) => m.ShoppingListPageModule,
+      ),
+    canActivate: [AuthguardService],
   },
 ];
 

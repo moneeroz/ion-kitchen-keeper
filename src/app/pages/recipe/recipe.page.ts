@@ -42,15 +42,17 @@ export class RecipePage implements OnInit {
   ngOnInit() {}
 
   addToCart() {
-    this.cartService.addToCart(this.user.id, this.recipe_id!).subscribe({
-      next: (result) => {
-        console.log(result);
-        alert('added to cart successfully');
-      },
-      error: (err) => {
-        console.log(err);
-        alert('item already in cart');
-      },
-    });
+    if (this.user) {
+      this.cartService.addToCart(this.user.id, this.recipe_id!).subscribe({
+        next: (result) => {
+          console.log(result);
+          alert('added to cart successfully');
+        },
+        error: (err) => {
+          console.log(err);
+          alert('item already in cart');
+        },
+      });
+    }
   }
 }
