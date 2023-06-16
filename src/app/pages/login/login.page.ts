@@ -9,14 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 import { IappState } from 'src/store/iapp-state';
 import { hide, show } from 'src/store/loading/loading.actions';
 import { IloginState } from 'src/store/login/ilogin-state';
-import {
-  login,
-  loginFail,
-  loginSuccess,
-  recoverPassword,
-  recoverPasswordFail,
-  recoverPasswordSuccess,
-} from 'src/store/login/login.actions';
+import { login, recoverPassword } from 'src/store/login/login.actions';
 
 @Component({
   selector: 'app-login',
@@ -37,17 +30,14 @@ export class LoginPage implements OnInit, OnDestroy {
     private router: Router,
     private store: Store<IappState>,
     private toastController: ToastController,
-    private auth: AuthService,
   ) {}
 
   ngOnInit() {
     this.loginStateSubscription = this.store
       .select('login')
       .subscribe((loginState) => {
-        // this.onIsRecoveringPassword(loginState);
         this.onIsRecoveredPassword(loginState);
 
-        // this.onIsLoggingIn(loginState);
         this.onIsLoggedIn(loginState);
 
         this.onError(loginState);
@@ -74,40 +64,6 @@ export class LoginPage implements OnInit, OnDestroy {
       this.router.navigateByUrl('recipes');
     }
   }
-
-  // private onIsLoggingIn(loginState: IloginState) {
-  //   if (loginState.isLoggingIn) {
-  //     const email = this.loginForm.get('email')?.value;
-  //     const password = this.loginForm.get('password')?.value;
-
-  //     this.auth.login(email, password).subscribe({
-  //       next: (user) => {
-  //         this.store.dispatch(loginSuccess({ user }));
-  //       },
-  //       error: (err) =>
-  //         this.store.dispatch(
-  //           loginFail({
-  //             error: {
-  //               message: 'User not found!',
-  //             },
-  //           }),
-  //         ),
-  //     });
-  //   }
-  // }
-
-  // private async onIsRecoveringPassword(loginState: IloginState) {
-  //   if (loginState.isRecoveringPassword) {
-  //     this.auth
-  //       .recoverLoginDetails(this.loginForm.get('email')!.value)
-  //       .subscribe({
-  //         next: () => {
-  //           this.store.dispatch(recoverPasswordSuccess());
-  //         },
-  //         error: (error) => this.store.dispatch(recoverPasswordFail({ error })),
-  //       });
-  //   }
-  // }
 
   private async onIsRecoveredPassword(loginState: IloginState) {
     if (loginState.isRecoveredPassword) {
@@ -141,27 +97,6 @@ export class LoginPage implements OnInit, OnDestroy {
       }),
     );
     this.loginForm.reset();
-
-    // const formData = this.loginForm.value;
-
-    // console.log(formData);
-
-    // this.userService.loginUser(formData).subscribe({
-    //   next: (result) => {
-    //     localStorage.setItem('currentUser', JSON.stringify(result));
-
-    //     alert('Logged in successfully!');
-
-    //     this.loginForm.reset();
-
-    //     this.router.navigateByUrl('recipes');
-    //   },
-    //   error: (err) => {
-    //     alert(err.error);
-
-    //     console.log(err);
-    //   },
-    // });
   }
 
   register() {

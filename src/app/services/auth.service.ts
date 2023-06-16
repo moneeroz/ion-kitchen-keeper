@@ -44,4 +44,22 @@ export class AuthService {
         });
     });
   }
+
+  // registerUser(formData: any) {
+  //   return this.http.post<Iuser>(this.apiURL + '/register', formData);
+  // }
+  register(userData: Iuser): Observable<void> {
+    return new Observable<void>((observer) => {
+      this.http.post<Iuser>(this.apiURL + '/register', userData).subscribe({
+        next: () => {
+          observer.next();
+          observer.complete();
+        },
+        error: (error) => {
+          observer.error(error);
+          observer.complete();
+        },
+      });
+    });
+  }
 }
