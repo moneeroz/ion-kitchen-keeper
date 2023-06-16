@@ -11,4 +11,9 @@ export const AppInitialState: IappState = {
     isLoggedIn: false,
     error: null,
   },
+  register: {
+    isRegistering: false,
+    isRegistered: false,
+    error: null,
+  },
 };
