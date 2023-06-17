@@ -16,4 +16,13 @@ export const AppInitialState: IappState = {
     isRegistered: false,
     error: null,
   },
+  recipes: {
+    recipes: [],
+    selectedRecipe: null,
+    category: null,
+    recipeId: null,
+    recipe: null,
+    isLoading: false,
+    error: null,
+  },
 };
