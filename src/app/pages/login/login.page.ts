@@ -4,13 +4,12 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
+
+import { AuthActions } from 'src/store/auth/auth.actions';
+import { authFeature } from 'src/store/auth/auth.selectors';
+import { IauthState } from 'src/store/auth/iauth-state';
 import { IappState } from 'src/store/iapp-state';
 import { hide, show } from 'src/store/loading/loading.actions';
-import { IloginState } from 'src/store/login/ilogin-state';
-import { login, recoverPassword } from 'src/store/login/login.actions';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -22,51 +21,46 @@ export class LoginPage implements OnInit, OnDestroy {
     password: ['', [Validators.required]],
   });
 
-  loginStateSubscription?: Subscription;
+  authStateSubscription?: Subscription;
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
     private router: Router,
     private store: Store<IappState>,
     private toastController: ToastController,
   ) {}
 
   ngOnInit() {
-    this.loginStateSubscription = this.store
-      .select('login')
-      .subscribe((loginState) => {
-        this.onIsRecoveredPassword(loginState);
-
-        this.onIsLoggedIn(loginState);
-
-        this.onError(loginState);
-        this.toggleLoading(loginState);
-      });
+    this.watchauthState();
   }
 
   ngOnDestroy(): void {
-    if (this.loginStateSubscription) {
-      this.loginStateSubscription.unsubscribe();
+    if (this.authStateSubscription) {
+      this.authStateSubscription.unsubscribe();
     }
   }
 
-  private toggleLoading(loginState: IloginState) {
-    if (loginState.isLoggingIn || loginState.isRecoveringPassword) {
+  private toggleLoading(authState: IauthState) {
+    if (authState.isLoggingIn || authState.isRecoveringPassword) {
       this.store.dispatch(show());
     } else {
       this.store.dispatch(hide());
     }
   }
 
-  private onIsLoggedIn(loginState: IloginState) {
-    if (loginState.isLoggedIn) {
-      this.router.navigateByUrl('recipes');
-    }
+  private watchauthState() {
+    this.authStateSubscription = this.store.select(authFeature).subscribe({
+      next: (state) => {
+        this.toggleLoading(state);
+        this.onIsRecoveredPassword(state);
+        this.onError(state);
+      },
+      // error: (error) => {},
+    });
   }
 
-  private async onIsRecoveredPassword(loginState: IloginState) {
-    if (loginState.isRecoveredPassword) {
+  private async onIsRecoveredPassword(authState: IauthState) {
+    if (authState.isRecoveredPassword) {
       const toast = await this.toastController.create({
         message: 'Recovery email sent!',
         duration: 2000,
@@ -77,10 +71,10 @@ export class LoginPage implements OnInit, OnDestroy {
     }
   }
 
-  private async onError(loginState: IloginState) {
-    if (loginState.error) {
+  private async onError(authState: IauthState) {
+    if (authState.error) {
       const toast = await this.toastController.create({
-        message: loginState.error.error,
+        message: authState.error,
         duration: 2000,
         position: 'bottom',
         color: 'danger',
@@ -90,12 +84,14 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   login() {
-    this.store.dispatch(
-      login({
-        email: this.loginForm.get('email')!.value,
-        password: this.loginForm.get('password')!.value,
-      }),
-    );
+    const email = this.loginForm.get('email')!.value;
+    const password = this.loginForm.get('password')!.value;
+    const credntials = {
+      email: email,
+      password: password,
+    };
+
+    this.store.dispatch(AuthActions.loginRequest({ credntials }));
     this.loginForm.reset();
   }
 
@@ -105,7 +101,9 @@ export class LoginPage implements OnInit, OnDestroy {
 
   forgotPassword() {
     this.store.dispatch(
-      recoverPassword({ email: this.loginForm.get('email')!.value }),
+      AuthActions.recoverPassword({
+        email: this.loginForm.get('email')!.value,
+      }),
     );
   }
 }
