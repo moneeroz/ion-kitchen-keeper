@@ -15,7 +15,7 @@ export class AuthService {
     return new Observable<void>((observer) => {
       setTimeout(() => {
         if (email == 'error@error.com') {
-          observer.error({ error: 'Email not found' });
+          observer.error('Email not found');
         }
         observer.next();
         observer.complete();
@@ -29,16 +29,11 @@ export class AuthService {
         .subscribe({
           next: (user) => {
             localStorage.setItem('currentUser', JSON.stringify(user));
-            observer.next({
-              email: user.email,
-              id: user.id,
-              password: user.password,
-              username: user.username,
-            });
+            observer.next(user);
             observer.complete();
           },
           error: (error) => {
-            observer.error(error);
+            observer.error(error.error);
             observer.complete();
           },
         });

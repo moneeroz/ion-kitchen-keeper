@@ -1,14 +1,7 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchbarCustomEvent, ToastController } from '@ionic/angular';
-import { Store, select } from '@ngrx/store';
+import { ToastController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Irecipe } from 'src/app/interfaces/irecipe';
 import { Iuser } from 'src/app/interfaces/iuser';
@@ -20,8 +13,8 @@ import { hide, show } from 'src/store/loading/loading.actions';
 import { IrecipesState } from 'src/store/recipes/irecipes-state';
 import { RecipesApiActions } from 'src/store/recipes/recipes.actions';
 import {
+  recipesFeature,
   selectError,
-  selectFeature,
   selectIsLoading,
   selectRecipes,
 } from 'src/store/recipes/recipes.selectors';
@@ -44,7 +37,6 @@ export class RecipesPage implements OnInit, OnDestroy {
   isLoading$: Observable<boolean>;
 
   constructor(
-    private recipeService: RecipeService,
     private router: Router,
     private userService: UserService,
     private favouriteService: FavouriteService,
@@ -73,7 +65,7 @@ export class RecipesPage implements OnInit, OnDestroy {
   }
 
   private watchRecipesState() {
-    this.recipeStateSubscription = this.store.select(selectFeature).subscribe({
+    this.recipeStateSubscription = this.store.select(recipesFeature).subscribe({
       next: (state) => {
         this.toggleLoading(state);
 

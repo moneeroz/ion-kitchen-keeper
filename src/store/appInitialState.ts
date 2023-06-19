@@ -4,13 +4,6 @@ export const AppInitialState: IappState = {
   loading: {
     show: false,
   },
-  login: {
-    isRecoveringPassword: false,
-    isRecoveredPassword: false,
-    isLoggingIn: false,
-    isLoggedIn: false,
-    error: null,
-  },
   register: {
     isRegistering: false,
     isRegistered: false,
@@ -23,6 +16,14 @@ export const AppInitialState: IappState = {
     recipeId: null,
     recipe: null,
     isLoading: false,
+    error: null,
+  },
+  auth: {
+    isLoggingIn: false,
+    isLoggedIn: false,
+    isRecoveringPassword: false,
+    isRecoveredPassword: false,
+    user: null,
     error: null,
   },
 };

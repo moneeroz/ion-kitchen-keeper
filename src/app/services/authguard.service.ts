@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of, switchMap, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IappState } from 'src/store/iapp-state';
+import { authFeature } from 'src/store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -24,10 +25,10 @@ export class AuthguardService {
   // }
 
   canActivate(): Observable<boolean> {
-    return this.store.select('login').pipe(
+    return this.store.select(authFeature).pipe(
       take(1),
-      switchMap((loginState) => {
-        if (loginState.isLoggedIn) {
+      switchMap((authState) => {
+        if (authState.isLoggedIn) {
           return of(true);
         }
         this.router.navigateByUrl('login');

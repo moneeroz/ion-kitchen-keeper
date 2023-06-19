@@ -1,19 +1,19 @@
 import { createSelector } from '@ngrx/store';
 import { IappState } from '../iapp-state';
 
-export const selectFeature = (state: IappState) => state.recipes;
+export const recipesFeature = (state: IappState) => state.recipes;
 
 export const selectIsLoading = createSelector(
-  selectFeature,
+  recipesFeature,
   (state) => state.isLoading,
 );
 
 export const selectRecipes = createSelector(
-  selectFeature,
+  recipesFeature,
   (state) => state.recipes,
 );
 
 export const selectError = createSelector(
-  selectFeature,
+  recipesFeature,
   (state) => state.error,
 );
