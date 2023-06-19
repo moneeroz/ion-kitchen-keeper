@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
-import { UserService } from 'src/app/services/user.service';
+import { Subscription, delay } from 'rxjs';
+import { AuthActions } from 'src/store/auth/auth.actions';
 import { IappState } from 'src/store/iapp-state';
 import { hide, show } from 'src/store/loading/loading.actions';
-import { login } from 'src/store/login/login.actions';
 import { IregisterState } from 'src/store/register/iregister-state';
-import { register } from 'src/store/register/register.actions';
+import { RegisterActions } from 'src/store/register/register.actions';
+import { registerFeature } from 'src/store/register/register.selectors';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +27,6 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
     private router: Router,
     private store: Store<IappState>,
     private toastController: ToastController,
@@ -46,20 +45,24 @@ export class RegisterPage implements OnInit, OnDestroy {
   register() {
     const formData = this.registerForm.value;
 
-    this.store.dispatch(register({ userData: formData }));
+    this.store.dispatch(
+      RegisterActions.registerRequest({ credntials: formData }),
+    );
     this.registerForm.reset();
   }
 
   private watchRegisterState() {
-    this.registerStateSubscription = this.store.select('register').subscribe({
-      next: (state) => {
-        this.toggleLoading(state);
+    this.registerStateSubscription = this.store
+      .select(registerFeature)
+      .subscribe({
+        next: (state) => {
+          this.toggleLoading(state);
 
-        this.onRegistered(state);
-        this.onError(state);
-      },
-      // error: (error) => {},
-    });
+          this.onRegistered(state);
+          this.onError(state);
+        },
+        // error: (error) => {},
+      });
   }
 
   private toggleLoading(registerState: IregisterState) {
@@ -71,13 +74,14 @@ export class RegisterPage implements OnInit, OnDestroy {
   }
 
   private onRegistered(registerState: IregisterState) {
+    const email = this.registerForm.get('email')!.value;
+    const password = this.registerForm.get('password')!.value;
+    const credntials = {
+      email: email,
+      password: password,
+    };
     if (registerState.isRegistered) {
-      this.store.dispatch(
-        login({
-          email: this.registerForm.get('email')!.value,
-          password: this.registerForm.get('password')!.value,
-        }),
-      );
+      this.store.dispatch(AuthActions.loginRequest({ credntials }));
     }
   }
 

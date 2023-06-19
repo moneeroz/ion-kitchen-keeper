@@ -1,38 +1,37 @@
 import { createReducer, on } from '@ngrx/store';
 import { AppInitialState } from '../appInitialState';
 import { IregisterState } from './iregister-state';
-import { register, registerFail, registerSuccess } from './register.actions';
+import { RegisterActions } from './register.actions';
 
-const initialState = AppInitialState.register;
+export const initialState = AppInitialState.register;
 
-const reducer = createReducer(
+export const registerReducer = createReducer(
   initialState,
-  on(register, (state): IregisterState => {
-    return {
+  on(
+    RegisterActions.registerRequest,
+    (state): IregisterState => ({
       ...state,
-      error: null,
       isRegistered: false,
       isRegistering: true,
-    };
-  }),
-  on(registerSuccess, (state) => {
-    return {
-      ...state,
       error: null,
+    }),
+  ),
+  on(
+    RegisterActions.registerSuccess,
+    (state): IregisterState => ({
+      ...state,
       isRegistered: true,
       isRegistering: false,
-    };
-  }),
-  on(registerFail, (state, action) => {
-    return {
+      error: null,
+    }),
+  ),
+  on(
+    RegisterActions.registerFailure,
+    (state, action): IregisterState => ({
       ...state,
-      error: action.error,
       isRegistered: false,
       isRegistering: false,
-    };
-  }),
+      error: action.error,
+    }),
+  ),
 );
-
-export function registerReducer(state: IregisterState, action: any) {
-  return reducer(state, action);
-}
