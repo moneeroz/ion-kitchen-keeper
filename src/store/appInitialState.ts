@@ -31,4 +31,9 @@ export const AppInitialState: IappState = {
     isLoading: false,
     error: null,
   },
+  favourites: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
 };

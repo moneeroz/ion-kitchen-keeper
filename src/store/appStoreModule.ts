@@ -9,6 +9,8 @@ import { authReducer } from './auth/auth.reducer';
 import { AuthEffects } from './auth/auth.effects';
 import { cartReducer } from './cart/cart.reducer';
 import { CartEffects } from './cart/cart.effects';
+import { favouritesReducer } from './favourites/favourites.reducer';
+import { FavouritesEffects } from './favourites/favourites.effects';
 
 export const appStoreModule = [
   StoreModule.forRoot([]),
@@ -17,11 +19,13 @@ export const appStoreModule = [
   StoreModule.forFeature('recipes', recipesReducer),
   StoreModule.forFeature('auth', authReducer),
   StoreModule.forFeature('cart', cartReducer),
+  StoreModule.forFeature('favourites', favouritesReducer),
   EffectsModule.forRoot([]),
   EffectsModule.forFeature([
     RegisterEffects,
     RecipesEffects,
     AuthEffects,
     CartEffects,
+    FavouritesEffects,
   ]),
 ];
