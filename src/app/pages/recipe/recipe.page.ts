@@ -7,6 +7,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { UserService } from 'src/app/services/user.service';
 import { CartApiActions } from 'src/store/cart/cart.actions';
+import { FavouriteApiActions } from 'src/store/favourites/favourites.actions';
 
 @Component({
   selector: 'app-recipe',
@@ -62,5 +63,11 @@ export class RecipePage implements OnInit {
     //     },
     //   });
     // }
+  }
+
+  addToFavourites(recipeId: string) {
+    this.store.dispatch(
+      FavouriteApiActions.addToFavouritesRequest({ recipeId }),
+    );
   }
 }

@@ -3,7 +3,7 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <ion-col size="6" size-md="4" *ngFor="let favourite of userFavourites">
+      <ion-col size="6" size-md="4" *ngFor="let favourite of items$ | async">
         <ion-fab horizontal="end">
           <ion-fab-button
             (click)="onDelete(favourite.recipe.id)"
