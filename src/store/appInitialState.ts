@@ -26,4 +26,9 @@ export const AppInitialState: IappState = {
     user: null,
     error: null,
   },
+  cart: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
 };
