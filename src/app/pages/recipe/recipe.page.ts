@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Irecipe } from 'src/app/interfaces/irecipe';
 import { Iuser } from 'src/app/interfaces/iuser';
 import { CartService } from 'src/app/services/cart.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { UserService } from 'src/app/services/user.service';
+import { CartApiActions } from 'src/store/cart/cart.actions';
 
 @Component({
   selector: 'app-recipe',
@@ -21,6 +23,7 @@ export class RecipePage implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartService,
     private userService: UserService,
+    private store: Store,
   ) {}
 
   ionViewWillEnter() {
@@ -42,17 +45,22 @@ export class RecipePage implements OnInit {
   ngOnInit() {}
 
   addToCart() {
-    if (this.user) {
-      this.cartService.addToCart(this.user.id, this.recipe_id!).subscribe({
-        next: (result) => {
-          console.log(result);
-          alert('added to cart successfully');
-        },
-        error: (err) => {
-          console.log(err);
-          alert('item already in cart');
-        },
-      });
-    }
+    this.store.dispatch(
+      CartApiActions.addToCartRequest({ recipeId: this.recipe_id! }),
+    );
+    alert('added to cart successfully');
+
+    // if (this.user) {
+    //   this.cartService.addToCart(this.user.id, this.recipe_id!).subscribe({
+    //     next: (result) => {
+    //       console.log(result);
+    //       alert('added to cart successfully');
+    //     },
+    //     error: (err) => {
+    //       console.log(err);
+    //       alert('item already in cart');
+    //     },
+    //   });
+    // }
   }
 }
