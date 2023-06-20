@@ -11,6 +11,7 @@ export const AuthActions = createActionGroup({
     'Login failure': props<{ error: string }>(),
     'Set user': props<{ user: Readonly<Iuser> }>(),
     'Recover password': props<{ email: string }>(),
+    'Logout success': emptyProps(),
     'Recover password success': emptyProps(),
     'Recover password failure': props<{ error: string }>(),
   },

@@ -64,4 +64,14 @@ export const authReducer = createReducer(
       error: action.error,
     }),
   ),
+  on(
+    AuthActions.logoutSuccess,
+    (state): IauthState => ({
+      ...state,
+      isLoggingIn: false,
+      isLoggedIn: false,
+      user: null,
+      error: null,
+    }),
+  ),
 );

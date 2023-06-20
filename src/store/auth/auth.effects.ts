@@ -31,6 +31,17 @@ export class AuthEffects {
     { dispatch: false },
   );
 
+  logoutSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.logoutSuccess),
+        tap(() => localStorage.removeItem('currentUser')),
+        tap(() => this.router.navigateByUrl('recipes')),
+      );
+    },
+    { dispatch: false },
+  );
+
   recoverPassword$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.recoverPassword),
