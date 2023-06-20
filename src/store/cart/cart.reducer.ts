@@ -19,7 +19,7 @@ export const cartReducer = createReducer(
     CartApiActions.getCartSuccess,
     (state, action): IcartState => ({
       ...state,
-      items: [...state.items, ...action.items],
+      items: [...action.items],
       isLoading: false,
       error: null,
     }),

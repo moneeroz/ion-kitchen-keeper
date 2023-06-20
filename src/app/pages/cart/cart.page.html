@@ -5,18 +5,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngIf="!cart.length">
+  <ion-card *ngIf="(itemCount$ | async ) === null">
     <ion-item>
       <ion-label>Cart is Empty!</ion-label>
     </ion-item>
   </ion-card>
 
-  <div *ngIf="cart.length">
+  <div *ngIf="items$ | async">
     <ion-card-header>
-      <ion-card-subtitle> Cart items: {{cart.length}} </ion-card-subtitle>
+      <ion-card-subtitle>
+        Cart items: {{itemCount$ | async}}
+      </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-card *ngFor="let item of cart">
+      <ion-card *ngFor="let item of items$ | async">
         <ion-card-header>
           <ion-chip>
             <ion-avatar>
