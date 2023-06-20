@@ -28,7 +28,7 @@ export class AuthService {
         .post<Iuser>(this.apiURL + '/login', { email, password })
         .subscribe({
           next: (user) => {
-            localStorage.setItem('currentUser', JSON.stringify(user));
+            // localStorage.setItem('currentUser', JSON.stringify(user));
             observer.next(user);
             observer.complete();
           },

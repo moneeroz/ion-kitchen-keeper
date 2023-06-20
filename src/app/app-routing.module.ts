@@ -5,7 +5,7 @@ import { AuthguardService } from './services/authguard.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'loading',
+    redirectTo: 'recipes',
     pathMatch: 'full',
   },
   {

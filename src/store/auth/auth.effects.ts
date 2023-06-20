@@ -25,6 +25,9 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.loginSuccess),
+        tap((action) =>
+          localStorage.setItem('currentUser', JSON.stringify(action.user)),
+        ),
         tap(() => this.router.navigateByUrl('recipes')),
       );
     },
