@@ -31,7 +31,7 @@ export class LoginPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.watchauthState();
+    this.watchAuthState();
   }
 
   ngOnDestroy(): void {
@@ -48,7 +48,7 @@ export class LoginPage implements OnInit, OnDestroy {
     }
   }
 
-  private watchauthState() {
+  private watchAuthState() {
     this.authStateSubscription = this.store.select(authFeature).subscribe({
       next: (state) => {
         this.toggleLoading(state);

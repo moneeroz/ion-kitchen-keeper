@@ -36,4 +36,9 @@ export const AppInitialState: IappState = {
     isLoading: false,
     error: null,
   },
+  category: {
+    categoryItems: [],
+    isLoading: false,
+    error: null,
+  },
 };
