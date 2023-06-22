@@ -7,7 +7,7 @@ import { CustomRecipeService } from 'src/app/services/custom-recipe.service';
 
 @Injectable()
 export class CustomRecipeEffects {
-  login$ = createEffect(() => {
+  generateRecipe$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CustomRecipeActions.generateRecipeRequest),
       exhaustMap((action) =>
@@ -23,14 +23,14 @@ export class CustomRecipeEffects {
     );
   });
 
-  loginSuccess$ = createEffect(
+  generateRecipeSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(CustomRecipeActions.generateRecipeSuccess),
         tap((action) =>
           localStorage.setItem('customRecipe', JSON.stringify(action.recipe)),
         ),
-        // tap(() => this.router.navigateByUrl('custom-recipe')),
+        tap(() => this.router.navigateByUrl('custom-recipe')),
       );
     },
     { dispatch: false },

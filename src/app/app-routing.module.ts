@@ -64,6 +64,14 @@ const routes: Routes = [
       ),
     canActivate: [AuthguardService],
   },
+  {
+    path: 'custom-recipe',
+    loadChildren: () => import('./pages/custom-recipe/custom-recipe.module').then( m => m.CustomRecipePageModule)
+  },
+  {
+    path: 'add-custom-recipe',
+    loadChildren: () => import('./pages/add-custom-recipe/add-custom-recipe.module').then( m => m.AddCustomRecipePageModule)
+  },
 ];
 
 @NgModule({

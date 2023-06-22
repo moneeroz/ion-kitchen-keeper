@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>custom AI recipe</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <img src="{{customRecipe.imgURL}}" />
+  <ion-header>{{test?.name}}</ion-header>
+
+  <p>Prep Time: {{test?.prepTime}}</p>
+
+  <h4>Ingredients :</h4>
+  <p *ngFor="let item of test?.ingredients?.split('\n')">{{item}}</p>
+
+  <h4>Directions :</h4>
+  <p *ngFor="let item of test?.directions?.split('\n')">{{item}}</p>
+</ion-content>

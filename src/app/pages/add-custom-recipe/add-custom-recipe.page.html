@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form class="flex-center">
+  <form class="flex-center" [formGroup]="promptForm" (ngSubmit)="generate()">
     <ion-card>
       <ion-card-header>
         <ion-card-title color="secondary">Send it!</ion-card-title>
