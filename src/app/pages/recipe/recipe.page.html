@@ -1,5 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="secondary" text=""></ion-back-button>
+    </ion-buttons>
+
     <ion-buttons slot="end">
       <ion-button (click)="addToCart()" color="secondary"
         >add to cart</ion-button
@@ -21,4 +25,11 @@
   <!-- split directions string by period charecter -->
   <p *ngFor="let item of recipe?.directions?.split('\n')">{{item}}</p>
   <!-- <p>{{recipe?.directions}}</p> -->
+  <ion-button
+    (click)="addToFavourites(recipe_id!)"
+    fill="clear"
+    size="full"
+    color="secondary"
+    >add to favourites</ion-button
+  >
 </ion-content>

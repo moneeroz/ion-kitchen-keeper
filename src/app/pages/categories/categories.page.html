@@ -19,7 +19,7 @@
   </div>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" size-md="4" *ngFor="let recipe of recipes">
+      <ion-col size="6" size-md="4" *ngFor="let recipe of recipes$ | async">
         <ion-fab horizontal="end">
           <ion-fab-button
             (click)="onFavourite(recipe.id)"

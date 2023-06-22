@@ -9,7 +9,7 @@ import { RecipesPageRoutingModule } from './recipes-routing.module';
 import { RecipesPage } from './recipes.page';
 import { RecipeComponentModule } from 'src/app/components/recipe/recipe.module';
 import { HeaderModule } from 'src/app/components/header/header.module';
-
+import { PipesModule } from '../../pipes/pipes.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +18,7 @@ import { HeaderModule } from 'src/app/components/header/header.module';
     RecipesPageRoutingModule,
     RecipeComponentModule,
     HeaderModule,
+    PipesModule,
   ],
   declarations: [RecipesPage],
 })
