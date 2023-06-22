@@ -13,6 +13,8 @@ import { favouritesReducer } from './favourites/favourites.reducer';
 import { FavouritesEffects } from './favourites/favourites.effects';
 import { categoryReducer } from './category/category.reducer';
 import { CategoryEffects } from './category/category.effects';
+import { customRecipeReducer } from './custom-recipe/custom-recipe.reducer';
+import { CustomRecipeEffects } from './custom-recipe/custom-recipe.effects';
 
 export const appStoreModule = [
   StoreModule.forRoot([]),
@@ -23,6 +25,7 @@ export const appStoreModule = [
   StoreModule.forFeature('cart', cartReducer),
   StoreModule.forFeature('favourites', favouritesReducer),
   StoreModule.forFeature('category', categoryReducer),
+  StoreModule.forFeature('customRecipe', customRecipeReducer),
   EffectsModule.forRoot([]),
   EffectsModule.forFeature([
     RegisterEffects,
@@ -31,5 +34,6 @@ export const appStoreModule = [
     CartEffects,
     FavouritesEffects,
     CategoryEffects,
+    CustomRecipeEffects,
   ]),
 ];

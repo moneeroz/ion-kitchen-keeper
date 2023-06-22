@@ -41,4 +41,9 @@ export const AppInitialState: IappState = {
     isLoading: false,
     error: null,
   },
+  customRecipe: {
+    isLoading: false,
+    recipe: null,
+    error: null,
+  },
 };
