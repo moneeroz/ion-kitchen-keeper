@@ -19,3 +19,21 @@ img {
   right: -6px;
   font-size: 10px;
 }
+
+ion-header {
+  margin-top: 0.3em;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+ion-content {
+  div {
+    padding-inline: 1em;
+  }
+
+  .step {
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+}

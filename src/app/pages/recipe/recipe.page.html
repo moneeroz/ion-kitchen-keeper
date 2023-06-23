@@ -21,20 +21,20 @@
 <ion-content [fullscreen]="true">
   <img src="{{recipe?.image}}" />
   <ion-header>{{recipe?.name}}</ion-header>
-  <!-- <p>{{recipe?.ingredients}}</p> -->
-  <h4>Ingredients :</h4>
-  <!-- split ingredients string by new line charecter -->
-  <p *ngFor="let item of recipe?.ingredients?.split('\n')">{{item}}</p>
+  <div>
+    <!-- <p>{{recipe?.ingredients}}</p> -->
+    <h4>Ingredients :</h4>
+    <!-- split ingredients string by new line charecter -->
+    <div *ngFor="let item of recipe?.ingredients?.split('\n')">
+      <p>{{item}}</p>
+    </div>
 
-  <h4>Directions :</h4>
-  <!-- split directions string by period charecter -->
-  <p *ngFor="let item of recipe?.directions?.split('\n')">{{item}}</p>
-  <!-- <p>{{recipe?.directions}}</p> -->
-  <ion-button
-    (click)="addToFavourites(recipe_id!)"
-    fill="clear"
-    size="full"
-    color="secondary"
-    >add to favourites</ion-button
-  >
+    <h4>Directions :</h4>
+    <!-- split directions string by period charecter -->
+    <div *ngFor="let item of recipe?.directions?.split('\n'); let i = index">
+      <p class="step">Step {{i+1}}</p>
+      <p>{{item}}</p>
+    </div>
+    <!-- <p>{{recipe?.directions}}</p> -->
+  </div>
 </ion-content>
