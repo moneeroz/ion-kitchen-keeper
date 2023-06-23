@@ -6,10 +6,10 @@ import { AppInitialState } from '../appInitialState';
 const initialState: IloadingState = AppInitialState.loading;
 const reducer = createReducer(
   initialState,
-  on(show, () => {
+  on(show, (): IloadingState => {
     return { show: true };
   }),
-  on(hide, () => {
+  on(hide, (): IloadingState => {
     return { show: false };
   }),
 );
