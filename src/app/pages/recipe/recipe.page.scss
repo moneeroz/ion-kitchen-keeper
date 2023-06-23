@@ -1,3 +1,21 @@
 img {
-  aspect-ratio: 1;
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.cart-button {
+  position: relative;
+  margin-right: 10px;
+}
+
+.cart-icon {
+  position: relative;
+  margin-right: 10px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0px;
+  right: -6px;
+  font-size: 10px;
 }

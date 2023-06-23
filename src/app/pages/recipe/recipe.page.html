@@ -5,9 +5,14 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="addToCart()" color="secondary"
-        >add to cart</ion-button
-      >
+      <ion-button (click)="addToFavourites(recipe_id!)" color="secondary"
+        ><ion-icon name="heart-outline" size="large"></ion-icon
+      ></ion-button>
+
+      <ion-button (click)="addToCart()" color="secondary" class="cart-button">
+        <ion-icon name="cart-outline" size="large" class="cart-icon"></ion-icon>
+        <ion-badge color="success" class="cart-badge">+</ion-badge>
+      </ion-button>
     </ion-buttons>
     <ion-title>recipe</ion-title>
   </ion-toolbar>
