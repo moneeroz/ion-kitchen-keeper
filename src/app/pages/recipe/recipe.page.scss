@@ -1,3 +1,39 @@
 img {
-  aspect-ratio: 1;
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.cart-button {
+  position: relative;
+  margin-right: 10px;
+}
+
+.cart-icon {
+  position: relative;
+  margin-right: 10px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0px;
+  right: -6px;
+  font-size: 10px;
+}
+
+ion-header {
+  margin-top: 0.3em;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+ion-content {
+  div {
+    padding-inline: 1em;
+  }
+
+  .step {
+    font-weight: bold;
+    font-size: 0.9em;
+  }
 }

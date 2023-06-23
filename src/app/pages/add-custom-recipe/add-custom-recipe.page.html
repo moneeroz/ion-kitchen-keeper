@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>generate custom recipe</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form class="flex-center" [formGroup]="promptForm" (ngSubmit)="generate()">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title color="secondary">Send it!</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-textarea
+              formControlName="ingredients"
+              label="Ingredients"
+              labelPlacement="floating"
+              placeholder="Enter ingredients here"
+              type="email"
+            ></ion-textarea>
+          </ion-item>
+        </ion-list>
+        <ion-button type="submit" color="secondary" size="full"
+          >Generate</ion-button
+        >
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

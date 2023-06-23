@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
@@ -21,14 +21,12 @@ export class AppComponent {
   constructor(
     private router: Router,
     private menu: MenuController,
-    private store: Store<IappState>,
+    private store: Store,
   ) {}
 
   logout() {
     this.store.dispatch(AuthActions.logoutSuccess());
-    // localStorage.removeItem('currentUser');
-    // alert('Loggedout successfully!');
+
     this.menu.close();
-    // this.router.navigateByUrl('login');
   }
 }
