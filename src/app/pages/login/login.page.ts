@@ -84,8 +84,8 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   login() {
-    const email = this.loginForm.get('email')!.value;
-    const password = this.loginForm.get('password')!.value;
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
     const credntials = {
       email: email,
       password: password,
