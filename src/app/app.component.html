@@ -4,7 +4,12 @@
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>Kitchen Keeper</ion-list-header>
-          <ion-note>Recipes Worth Keeping</ion-note>
+          <ion-note *ngIf="(isLoggedIn$ | async) === false"
+            >Recipes Worth Keeping</ion-note
+          >
+          <div *ngIf="isLoggedIn$ | async">
+            <ion-note>{{ user$ | async }}'s kitchen</ion-note>
+          </div>
 
           <ion-menu-toggle
             auto-hide="false"

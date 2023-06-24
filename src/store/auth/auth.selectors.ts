@@ -12,3 +12,7 @@ export const selectIsLoggingIn = createSelector(
   (state) => state.isLoggingIn,
 );
 export const selectUser = createSelector(authFeature, (state) => state.user);
+export const selectUserName = createSelector(
+  authFeature,
+  (state) => state.user?.username,
+);
