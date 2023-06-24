@@ -2,3 +2,14 @@ img {
   width: 100%;
   aspect-ratio: 1;
 }
+
+ion-card-title {
+  font-size: 0.9em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+div {
+  font-size: 0.85em;
+}
