@@ -17,20 +17,15 @@ import { FavouriteApiActions } from 'src/store/favourites/favourites.actions';
 export class RecipePage implements OnInit {
   recipe_id: string | null = '';
   recipe?: Irecipe;
-  user!: Iuser;
 
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private cartService: CartService,
-    private userService: UserService,
     private store: Store,
   ) {}
 
   ionViewWillEnter() {
     this.recipe_id = this.route.snapshot.paramMap.get('recipe_id');
-
-    this.user = this.userService.getUserData();
 
     this.recipeService.getRecipe(this.recipe_id).subscribe({
       next: (recipe) => {
@@ -49,20 +44,7 @@ export class RecipePage implements OnInit {
     this.store.dispatch(
       CartApiActions.addToCartRequest({ recipeId: this.recipe_id! }),
     );
-    alert('added to cart successfully');
-
-    // if (this.user) {
-    //   this.cartService.addToCart(this.user.id, this.recipe_id!).subscribe({
-    //     next: (result) => {
-    //       console.log(result);
-    //       alert('added to cart successfully');
-    //     },
-    //     error: (err) => {
-    //       console.log(err);
-    //       alert('item already in cart');
-    //     },
-    //   });
-    // }
+    // alert('added to cart successfully');
   }
 
   addToFavourites(recipeId: string) {

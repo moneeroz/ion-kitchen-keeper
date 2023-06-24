@@ -41,10 +41,10 @@ export class AppComponent {
   }
 
   async onLogout() {
-    const recoverAlert = await this.alertController.create({
+    const logoutAlert = await this.alertController.create({
       header: 'Alert',
 
-      message: `Are you sure you want to logout?`,
+      message: 'Are you sure you want to logout?',
       buttons: [
         {
           text: 'NO',
@@ -57,6 +57,6 @@ export class AppComponent {
         },
       ],
     });
-    await recoverAlert.present();
+    await logoutAlert.present();
   }
 }

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { IcartItem } from 'src/app/interfaces/icart';
-import { Iuser } from 'src/app/interfaces/iuser';
-import { CartService } from 'src/app/services/cart.service';
-import { UserService } from 'src/app/services/user.service';
 import { CartApiActions } from 'src/store/cart/cart.actions';
 import {
   selectCartItemCount,
@@ -17,61 +14,62 @@ import { IappState } from 'src/store/iapp-state';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
-  // user!: Iuser;
-  cart: IcartItem[] = [];
-
   items$ = this.store.select(selectCartItems);
   itemCount$ = this.store.select(selectCartItemCount);
   constructor(
-    private cartService: CartService,
-    private userSrvice: UserService,
     private store: Store<IappState>,
+    private alertController: AlertController,
   ) {
     this.store.dispatch(CartApiActions.getCartRequest());
   }
 
-  ionViewWillEnter() {
-    // this.user = this.userSrvice.getUserData();
-    // this.cartService.getCartItems(this.user.id).subscribe({
-    //   next: (cartItems) => {
-    //     this.cart = cartItems;
-    //     console.log(this.cart);
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   },
-    // });
-  }
   ngOnInit() {}
 
-  onDelete(recipeId: string) {
+  deleteFromCart(recipeId: string) {
     this.store.dispatch(CartApiActions.removeFromCartRequest({ recipeId }));
-    // const index = this.cart.findIndex((item) => {
-    //   return item.recipeId === recipe_id;
-    // });
-    // this.cartService.deleteFromCart(this.user.id, recipe_id).subscribe({
-    //   next: (result) => {
-    //     console.log(result);
-    //     alert('removed from cart successfully');
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   },
-    // });
-    // this.cart.splice(index, 1);
   }
 
-  onEmptyCart() {
+  emptyCart() {
     this.store.dispatch(CartApiActions.emptyCartRequest());
-    // this.cartService.clearCart(this.user.id).subscribe({
-    //   next: (result) => {
-    //     console.log(result);
-    //     alert('cart is now empty');
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   },
-    // });
-    // this.cart.length = 0;
+  }
+
+  async onDelete(recipeId: string) {
+    const deleteAlert = await this.alertController.create({
+      header: 'Delete',
+
+      message: 'Are you sure you want to remove this recipe from cart?',
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            this.deleteFromCart(recipeId);
+          },
+        },
+      ],
+    });
+    await deleteAlert.present();
+  }
+
+  async onEmptyCart() {
+    const emptyCartAlert = await this.alertController.create({
+      header: 'Empty Cart',
+
+      message: 'Are you sure you want to empty your cart?',
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            this.emptyCart();
+          },
+        },
+      ],
+    });
+    await emptyCartAlert.present();
   }
 }
