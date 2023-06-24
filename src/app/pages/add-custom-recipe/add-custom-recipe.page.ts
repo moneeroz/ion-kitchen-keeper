@@ -41,6 +41,7 @@ export class AddCustomRecipePage implements OnInit {
     const prompt = this.promptForm.get('ingredients')!.value;
 
     this.store.dispatch(CustomRecipeActions.generateRecipeRequest({ prompt }));
+    this.promptForm.reset();
   }
 
   private toggleLoading(customRecipeState: IcustomRecipeState) {

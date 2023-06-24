@@ -9,13 +9,18 @@
 
 <ion-content [fullscreen]="true">
   <img src="{{customRecipe.imgURL}}" />
-  <ion-header>{{test?.name}}</ion-header>
+  <ion-header>{{aiRecipe?.name}}</ion-header>
+  <div>
+    <h5>Prep Time: <span>{{aiRecipe?.prepTime}}</span></h5>
 
-  <p>Prep Time: {{test?.prepTime}}</p>
+    <h4>Ingredients :</h4>
+    <div *ngFor="let item of aiRecipe?.ingredients?.split('\n')">
+      <p>{{item}}</p>
+    </div>
 
-  <h4>Ingredients :</h4>
-  <p *ngFor="let item of test?.ingredients?.split('\n')">{{item}}</p>
-
-  <h4>Directions :</h4>
-  <p *ngFor="let item of test?.directions?.split('\n')">{{item}}</p>
+    <h4>Directions :</h4>
+    <div *ngFor="let item of aiRecipe?.directions?.split('\n')">
+      <p>{{item}}</p>
+    </div>
+  </div>
 </ion-content>

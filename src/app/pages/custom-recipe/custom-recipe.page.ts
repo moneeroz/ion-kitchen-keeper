@@ -9,13 +9,13 @@ import { IcustomRecipe } from 'src/app/interfaces/icustom-recipe';
 export class CustomRecipePage implements OnInit {
   customRecipe: IcustomRecipe = { content: '', imgURL: '' };
 
-  test: any;
+  aiRecipe: any;
   constructor() {}
 
   ngOnInit() {
     this.customRecipe = this.getcustomRecipe();
     this.format((this.customRecipe = this.getcustomRecipe()));
-    console.log(this.customRecipe);
+    // console.log(this.customRecipe);
   }
 
   getcustomRecipe() {
@@ -56,7 +56,7 @@ export class CustomRecipePage implements OnInit {
     // Set the image URL
     recipe.image = customRecipe.imgURL;
 
-    this.test = recipe;
-    console.log(recipe);
+    this.aiRecipe = recipe;
+    // console.log(recipe);
   }
 }
