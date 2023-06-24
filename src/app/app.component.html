@@ -27,12 +27,22 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-button
-            (click)="logout()"
+            *ngIf="isLoggedIn$ | async"
+            (click)="onLogout()"
             color="secondary"
             size="full"
             fill="clear"
             >Logout</ion-button
           >
+          <ng-container *ngIf="(isLoggedIn$ | async) === false">
+            <ion-button
+              (click)="login()"
+              color="secondary"
+              size="full"
+              fill="clear"
+              >Login</ion-button
+            >
+          </ng-container>
         </ion-list>
       </ion-content>
     </ion-menu>
