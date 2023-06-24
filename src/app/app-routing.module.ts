@@ -66,11 +66,25 @@ const routes: Routes = [
   },
   {
     path: 'custom-recipe',
-    loadChildren: () => import('./pages/custom-recipe/custom-recipe.module').then( m => m.CustomRecipePageModule)
+    loadChildren: () =>
+      import('./pages/custom-recipe/custom-recipe.module').then(
+        (m) => m.CustomRecipePageModule,
+      ),
   },
   {
     path: 'add-custom-recipe',
-    loadChildren: () => import('./pages/add-custom-recipe/add-custom-recipe.module').then( m => m.AddCustomRecipePageModule)
+    loadChildren: () =>
+      import('./pages/add-custom-recipe/add-custom-recipe.module').then(
+        (m) => m.AddCustomRecipePageModule,
+      ),
+    canActivate: [AuthguardService],
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./pages/not-found/not-found.module').then(
+        (m) => m.NotFoundPageModule,
+      ),
   },
 ];
 

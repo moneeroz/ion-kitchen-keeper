@@ -16,10 +16,11 @@ export class AppComponent {
 
   isLoggedIn$ = this.store.select(selectIsLoggedIn);
   public appPages = [
-    { title: 'Recipes', url: 'recipes', icon: 'mail' },
-    { title: 'Categories', url: 'categories', icon: 'mail' },
-    { title: 'Favourites', url: 'favourites', icon: 'mail' },
-    { title: 'Cart', url: 'cart', icon: 'mail' },
+    { title: 'Recipes', url: 'recipes', icon: 'pizza' },
+    { title: 'Categories', url: 'categories', icon: 'file-tray' },
+    { title: 'Favourites', url: 'favourites', icon: 'heart' },
+    { title: 'Cart', url: 'cart', icon: 'cart' },
+    { title: 'Custom Recipe', url: 'add-custom-recipe', icon: 'cash' },
   ];
   constructor(
     private router: Router,
