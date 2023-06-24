@@ -54,15 +54,6 @@ export function localStorageSyncReducer(
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 export const appStoreModule = [
-  // StoreModule.forRoot([]),
-  // StoreModule.forFeature('loading', loadingReducer),
-  // StoreModule.forFeature('register', registerReducer),
-  // StoreModule.forFeature('recipes', recipesReducer),
-  // StoreModule.forFeature('auth', authReducer),
-  // StoreModule.forFeature('cart', cartReducer),
-  // StoreModule.forFeature('favourites', favouritesReducer),
-  // StoreModule.forFeature('category', categoryReducer),
-  // StoreModule.forFeature('customRecipe', customRecipeReducer),
   StoreModule.forRoot(reducers, { metaReducers }),
   EffectsModule.forRoot([]),
   EffectsModule.forFeature([

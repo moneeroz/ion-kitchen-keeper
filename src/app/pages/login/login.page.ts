@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { AuthActions } from 'src/store/auth/auth.actions';
 import { authFeature } from 'src/store/auth/auth.selectors';
 import { IauthState } from 'src/store/auth/iauth-state';
+import { CartApiActions } from 'src/store/cart/cart.actions';
 import { IappState } from 'src/store/iapp-state';
 import { hide, show } from 'src/store/loading/loading.actions';
 @Component({
@@ -53,6 +54,8 @@ export class LoginPage implements OnInit, OnDestroy {
       next: (state) => {
         this.toggleLoading(state);
         this.onIsRecoveredPassword(state);
+        this.onSuccess(state);
+        this.onloggedIn(state);
         this.onError(state);
       },
       // error: (error) => {},
@@ -80,6 +83,23 @@ export class LoginPage implements OnInit, OnDestroy {
         color: 'danger',
       });
       toast.present();
+    }
+  }
+  private async onSuccess(authState: IauthState) {
+    if (authState.isLoggedIn) {
+      const toast = await this.toastController.create({
+        message: `Welcome back ${authState.user?.username} !`,
+        duration: 2000,
+        position: 'bottom',
+        color: 'success',
+      });
+      toast.present();
+    }
+  }
+
+  private onloggedIn(authState: IauthState) {
+    if (authState.isLoggedIn) {
+      this.store.dispatch(CartApiActions.getCartRequest());
     }
   }
 

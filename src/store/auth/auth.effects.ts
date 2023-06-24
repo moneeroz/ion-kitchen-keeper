@@ -4,6 +4,7 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Injectable()
 export class AuthEffects {
@@ -39,6 +40,15 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthActions.logoutSuccess),
         tap(() => localStorage.removeItem('currentUser')),
+        tap(async () => {
+          const toast = await this.toastController.create({
+            message: 'Logged out successfully!',
+            duration: 2000,
+            position: 'bottom',
+            color: 'warning',
+          });
+          toast.present();
+        }),
         tap(() => this.router.navigateByUrl('recipes')),
       );
     },
@@ -63,5 +73,6 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
+    private toastController: ToastController,
   ) {}
 }

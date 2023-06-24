@@ -5,6 +5,7 @@ import { IcartItem } from 'src/app/interfaces/icart';
 import { Iuser } from 'src/app/interfaces/iuser';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
+import { selectIsLoggedIn } from 'src/store/auth/auth.selectors';
 import { CartApiActions } from 'src/store/cart/cart.actions';
 import { selectCartItemCount } from 'src/store/cart/cart.selectors';
 import { IappState } from 'src/store/iapp-state';
@@ -17,33 +18,11 @@ import { IappState } from 'src/store/iapp-state';
 export class HeaderComponent implements OnInit {
   @Input() title: string = '';
 
-  // user: Iuser;
-  // cartItems!: IcartItem[];
-  quantity: number = 0;
-
+  isLoggedIn$ = this.store.select(selectIsLoggedIn);
   itemCount$ = this.store.select(selectCartItemCount);
-  constructor(
-    private cart: CartService,
-    private userService: UserService,
-    private store: Store<IappState>,
-  ) {
-    // this.user = this.userService.getUserData();
-  }
+  constructor(private store: Store<IappState>) {}
 
   ngOnInit() {
-    // this.getItems();
-
-    this.store.dispatch(CartApiActions.getCartRequest());
+    // this.store.dispatch(CartApiActions.getCartRequest());
   }
-  // getItems() {
-  //   this.cart.getCartItems(this.user.id).subscribe({
-  //     next: (recipes) => {
-  //       this.cartItems = recipes;
-  //       this.quantity = recipes.length;
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
 }

@@ -4,10 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Irecipe } from 'src/app/interfaces/irecipe';
-import { Iuser } from 'src/app/interfaces/iuser';
-import { FavouriteService } from 'src/app/services/favourite.service';
-import { RecipeService } from 'src/app/services/recipe.service';
-import { UserService } from 'src/app/services/user.service';
+import { FavouriteApiActions } from 'src/store/favourites/favourites.actions';
 import { IappState } from 'src/store/iapp-state';
 import { hide, show } from 'src/store/loading/loading.actions';
 import { IrecipesState } from 'src/store/recipes/irecipes-state';
@@ -26,8 +23,6 @@ import {
 })
 export class RecipesPage implements OnInit, OnDestroy {
   pageTitle: string = 'recipes';
-  recipes: Irecipe[] = [];
-  user!: Iuser;
   query!: string;
 
   recipeStateSubscription?: Subscription;
@@ -38,8 +33,6 @@ export class RecipesPage implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private userService: UserService,
-    private favouriteService: FavouriteService,
     private store: Store<IappState>,
     private toastController: ToastController,
   ) {
@@ -60,10 +53,6 @@ export class RecipesPage implements OnInit, OnDestroy {
     }
   }
 
-  ionViewWillEnter() {
-    this.user = this.userService.getUserData();
-  }
-
   private watchRecipesState() {
     this.recipeStateSubscription = this.store.select(recipesFeature).subscribe({
       next: (state) => {
@@ -80,18 +69,10 @@ export class RecipesPage implements OnInit, OnDestroy {
     this.router.navigate(['recipe', recipe_id]);
   }
 
-  onFavourite(recipe_id: string) {
-    console.log(recipe_id);
-    this.favouriteService.addToFavourites(this.user.id, recipe_id).subscribe({
-      next: (result) => {
-        console.log(result);
-        alert('Recipe added to Favourites');
-      },
-      error: (err) => {
-        console.log(err);
-        alert('Recipe is already in Favourites');
-      },
-    });
+  addToFavourites(recipeId: string) {
+    this.store.dispatch(
+      FavouriteApiActions.addToFavouritesRequest({ recipeId }),
+    );
   }
 
   private toggleLoading(recipeState: IrecipesState) {
