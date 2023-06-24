@@ -3,3 +3,25 @@ img {
   aspect-ratio: 3/2;
   margin-bottom: 1em;
 }
+
+ion-header {
+  margin-top: 0.3em;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+ion-content {
+  div {
+    padding-inline: 1em;
+  }
+  h5 span {
+    font-size: 0.85em;
+  }
+}
+
+@media (height > 1023px) {
+  img {
+    max-height: 400px;
+  }
+}

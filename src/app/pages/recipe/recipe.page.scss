@@ -37,3 +37,9 @@ ion-content {
     font-size: 0.9em;
   }
 }
+
+@media (height > 1023px) {
+  img {
+    max-height: 400px;
+  }
+}

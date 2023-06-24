@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { AuthActions } from 'src/store/auth/auth.actions';
-import { selectIsLoggedIn } from 'src/store/auth/auth.selectors';
+import {
+  selectIsLoggedIn,
+  selectUserName,
+} from 'src/store/auth/auth.selectors';
 import { IappState } from 'src/store/iapp-state';
 
 @Component({
@@ -12,14 +15,14 @@ import { IappState } from 'src/store/iapp-state';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  isLoggedIn: boolean = false;
-
   isLoggedIn$ = this.store.select(selectIsLoggedIn);
+  user$ = this.store.select(selectUserName);
   public appPages = [
-    { title: 'Recipes', url: 'recipes', icon: 'mail' },
-    { title: 'Categories', url: 'categories', icon: 'mail' },
-    { title: 'Favourites', url: 'favourites', icon: 'mail' },
-    { title: 'Cart', url: 'cart', icon: 'mail' },
+    { title: 'Recipes', url: 'recipes', icon: 'pizza' },
+    { title: 'Categories', url: 'categories', icon: 'file-tray' },
+    { title: 'Favourites', url: 'favourites', icon: 'heart' },
+    { title: 'Cart', url: 'cart', icon: 'cart' },
+    { title: 'Custom Recipe', url: 'add-custom-recipe', icon: 'cash' },
   ];
   constructor(
     private router: Router,
