@@ -1,5 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+
     <ion-title>Grocery Cart</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -31,15 +35,27 @@
         </ion-card-header>
 
         <ion-card-content>
-          <p *ngFor="let ingrediant of item.recipe?.ingredients?.split('\n')">
-            {{ingrediant}}
-          </p>
+          <ion-accordion-group>
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-label>Ingredients</ion-label>
+              </ion-item>
+              <div slot="content">
+                <p
+                  *ngFor="let ingrediant of item.recipe?.ingredients?.split('\n')"
+                >
+                  {{ingrediant}}
+                </p>
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
         </ion-card-content>
 
         <ion-button
           (click)="onDelete(item.recipeId)"
           color="secondary"
           fill="clear"
+          size="block"
         >
           remove from cart
         </ion-button>
