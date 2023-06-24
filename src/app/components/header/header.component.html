@@ -8,7 +8,7 @@
       <ion-button routerLink="/cart" color="secondary" class="cart-button">
         <ion-icon name="cart-outline" size="large" class="cart-icon"></ion-icon>
         <ion-badge
-          *ngIf="itemCount$ | async"
+          *ngIf="isLoggedIn$ | async"
           color="warning"
           class="cart-badge"
           >{{ itemCount$ | async }}</ion-badge
