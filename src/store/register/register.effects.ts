@@ -13,7 +13,7 @@ export class RegisterEffects {
     return this.actions$.pipe(
       ofType(RegisterActions.registerRequest),
       exhaustMap((action) =>
-        this.authService.register(action.credntials).pipe(
+        this.authService.register(action.credentials).pipe(
           map(() => RegisterActions.registerSuccess()),
           catchError((error) => of(RegisterActions.registerFailure({ error }))),
         ),

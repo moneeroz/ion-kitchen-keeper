@@ -13,7 +13,7 @@ export class AuthEffects {
       ofType(AuthActions.loginRequest),
       exhaustMap((action) =>
         this.authService
-          .login(action.credntials.email, action.credntials.password)
+          .login(action.credentials.email, action.credentials.password)
           .pipe(
             map((user) => AuthActions.loginSuccess({ user: user })),
             catchError((error) => of(AuthActions.loginFailure({ error }))),

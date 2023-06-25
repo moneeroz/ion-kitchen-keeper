@@ -88,7 +88,7 @@ export class LoginPage implements OnInit, OnDestroy {
   private async onSuccess(authState: IauthState) {
     if (authState.isLoggedIn) {
       const toast = await this.toastController.create({
-        message: `Welcome back ${authState.user?.username} !`,
+        message: `Logged in as ${authState.user?.username} !`,
         duration: 2000,
         position: 'bottom',
         color: 'success',
@@ -106,12 +106,12 @@ export class LoginPage implements OnInit, OnDestroy {
   login() {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
-    const credntials = {
+    const credentials = {
       email: email,
       password: password,
     };
 
-    this.store.dispatch(AuthActions.loginRequest({ credntials }));
+    this.store.dispatch(AuthActions.loginRequest({ credentials }));
     this.loginForm.reset();
   }
 

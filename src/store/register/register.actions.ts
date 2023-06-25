@@ -10,7 +10,7 @@ export const RegisterActions = createActionGroup({
   source: 'Register',
   events: {
     'Register request': props<{
-      credntials: Iuser;
+      credentials: Iuser;
     }>(),
     'Register success': emptyProps(),
     'Register failure': props<{ error: string }>(),

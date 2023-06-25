@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { Iuser } from 'src/app/interfaces/iuser';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
@@ -19,6 +20,7 @@ export class ShoppingListPage implements OnInit {
   constructor(
     private cartService: CartService,
     private userService: UserService,
+    private toastController: ToastController,
   ) {}
 
   ionViewWillEnter() {
@@ -50,5 +52,20 @@ export class ShoppingListPage implements OnInit {
     this.completedShopping = this.clickedIngredients.every(
       (clicked) => clicked,
     );
+
+    if (this.completedShopping) {
+      this.shoppingDoneToast();
+    }
+  }
+
+  async shoppingDoneToast() {
+    const toast = await this.toastController.create({
+      message: 'all items acquired, good job!',
+      duration: 3000,
+      position: 'bottom',
+      color: 'success',
+    });
+
+    toast.present();
   }
 }

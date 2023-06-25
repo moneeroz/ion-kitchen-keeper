@@ -1,4 +1,4 @@
-<ion-card button (click)="onView(recipe.id)">
+<ion-card *ngIf="recipe" button (click)="onView(recipe.id)">
   <img src="{{ recipe.image }}" />
   <ion-card-header>
     <ion-card-title>
@@ -7,7 +7,12 @@
 
     <ion-card-subtitle>
       <div *ngIf="showCatagory">{{ recipe.category_id }}</div>
-      <div>Prep Time</div>
+      <div class="flex">
+        <p class="timer">
+          <ion-icon name="timer-outline"></ion-icon>
+        </p>
+        <p>{{ recipe.prep_time }}</p>
+      </div>
     </ion-card-subtitle>
   </ion-card-header>
 </ion-card>
