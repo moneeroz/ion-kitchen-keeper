@@ -22,7 +22,7 @@ import {
   styleUrls: ['./recipes.page.scss'],
 })
 export class RecipesPage implements OnInit, OnDestroy {
-  pageTitle: string = 'recipes';
+  pageTitle: string = 'Recipes';
   query!: string;
 
   recipeStateSubscription?: Subscription;
