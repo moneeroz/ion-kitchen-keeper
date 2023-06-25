@@ -48,7 +48,9 @@ export class RegisterPage implements OnInit, OnDestroy {
     this.store.dispatch(
       RegisterActions.registerRequest({ credentials: formData }),
     );
-    this.registerForm.reset();
+    setTimeout(() => {
+      this.registerForm.reset();
+    }, 500);
   }
 
   private watchRegisterState() {
