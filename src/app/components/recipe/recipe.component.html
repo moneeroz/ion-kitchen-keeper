@@ -1,4 +1,4 @@
-<ion-card button (click)="onView(recipe.id)">
+<ion-card *ngIf="recipe" button (click)="onView(recipe.id)">
   <img src="{{ recipe.image }}" />
   <ion-card-header>
     <ion-card-title>
