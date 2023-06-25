@@ -46,7 +46,7 @@ export class RegisterPage implements OnInit, OnDestroy {
     const formData = this.registerForm.value;
 
     this.store.dispatch(
-      RegisterActions.registerRequest({ credntials: formData }),
+      RegisterActions.registerRequest({ credentials: formData }),
     );
     this.registerForm.reset();
   }
@@ -76,12 +76,12 @@ export class RegisterPage implements OnInit, OnDestroy {
   private onRegistered(registerState: IregisterState) {
     const email = this.registerForm.get('email')!.value;
     const password = this.registerForm.get('password')!.value;
-    const credntials = {
+    const credentials = {
       email: email,
       password: password,
     };
     if (registerState.isRegistered) {
-      this.store.dispatch(AuthActions.loginRequest({ credntials }));
+      this.store.dispatch(AuthActions.loginRequest({ credentials }));
     }
   }
 
