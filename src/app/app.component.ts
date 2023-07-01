@@ -21,7 +21,7 @@ export class AppComponent {
     { title: 'Recipes', url: 'recipes', icon: 'pizza' },
     { title: 'Categories', url: 'categories', icon: 'file-tray' },
     { title: 'Favourites', url: 'favourites', icon: 'heart' },
-    { title: 'Cart', url: 'cart', icon: 'cart' },
+    { title: 'Shopping List', url: 'cart', icon: 'cart' },
     { title: 'Custom Recipe', url: 'add-custom-recipe', icon: 'cash' },
   ];
   constructor(
