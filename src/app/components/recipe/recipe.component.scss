@@ -1,6 +1,6 @@
 img {
   width: 100%;
-  aspect-ratio: 1;
+  height: 200px;
 }
 
 ion-card-title {
@@ -21,4 +21,11 @@ div {
 .timer {
   font-size: 1.1em;
   padding-right: 0.5em;
+}
+
+.sub {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 1em;
 }
