@@ -38,9 +38,9 @@ http://localhost:4100/
 
 ## Final Product
 
-<div align="center">
-  <video src="https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm" width="400" />
-</div>
+
+ https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm
+
 
 !["Auth Page"](https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_login_ngzs9u.png)
 !["Recipes Page"](https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m-recipes_lr2ozt.png)
