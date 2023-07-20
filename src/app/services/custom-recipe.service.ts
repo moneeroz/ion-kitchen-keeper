@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CustomRecipeService {
   constructor(private http: HttpClient) {}
 
-  private apiURL: string = 'http://localhost:5050/create-recipe';
+  private apiURL: string = 'http://localhost:2828/api/openai/create-recipe';
 
   // createRecipe(prompt: string) {
   //   return this.http.post(this.apiURL, { prompt: prompt });
