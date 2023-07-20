@@ -43,7 +43,8 @@ http://localhost:8100
 ## Final Product
 
 <div align="center">
-    <video src="https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm" width="50%">
+ <video src="https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm" controls="controls" muted="muted" playsinline="playsinline">
+      </video>
     <img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_login_ngzs9u.png" alt="Auth Page" width="50%"  style="padding: 20px"/>
     <img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m-recipes_lr2ozt.png" alt="Recipes Page" width="50%"  style="padding: 20px"/>
     <img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/side_menu_di4hvq.png" alt="Side menu" width="50%"  style="padding: 20px"/>
