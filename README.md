@@ -38,7 +38,9 @@ http://localhost:4100/
 
 ## Final Product
 
-![[Video Demo](https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_categories_qirriz.png)](https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm)
+[<img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_categories_qirriz.png" width="50%">](https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm "Demo")
+
+
 !["Auth Page"](https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_login_ngzs9u.png)
 !["Recipes Page"](https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m-recipes_lr2ozt.png)
 !["Side menu"](https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/side_menu_di4hvq.png)
