@@ -44,6 +44,10 @@ http://localhost:8100
 
 <div align="center">
 <p>Click for video demo:</p>
+</div>
+
+<div align="center">
+
 [<img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_categories_qirriz.png" width="50%">](https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm "Video Demo")
 
 </div>
