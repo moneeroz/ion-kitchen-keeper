@@ -42,14 +42,16 @@ http://localhost:8100
 
 ## Final Product
 
- <video src="https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm" controls="controls" muted="muted" playsinline="playsinline">
-      </video>
+[<img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_categories_qirriz.png" width="50%" style="margin-inline: auto>](https://res.cloudinary.com/dsity4tvx/video/upload/v1689808391/demo/Peek_2023-07-01_12-14_vtgqkl.webm "Video Demo")
+
 <div align="center">
+
     <img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_login_ngzs9u.png" alt="Auth Page" width="50%"  style="padding: 20px"/>
     <img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m-recipes_lr2ozt.png" alt="Recipes Page" width="50%"  style="padding: 20px"/>
     <img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/side_menu_di4hvq.png" alt="Side menu" width="50%"  style="padding: 20px"/>
     <img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_recipe_xm4np3.png" alt="Recipe info page" width="50%"  style="padding: 20px"/>
     <img src="https://res.cloudinary.com/dsity4tvx/image/upload/v1689808212/demo/m_cart_ulxfo9.png" alt="Grocery cart" width="50%"  style="padding: 20px"/>
+
 </div>
 
 ## Future Features
